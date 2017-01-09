@@ -1,6 +1,6 @@
 ---
 title: 安装ubuntu后需要做的事
-date: 2017-01-09 16:40:27
+date: 2017-01-06 16:40:27
 tags: Ubuntu
 categories: Ubuntu
 ---
@@ -9,14 +9,14 @@ categories: Ubuntu
 
 	sudo apt-get install vim
 
-### 2.更新源
-
 <!--more-->
+
+### 2.更新源
 
 > 系统自带的有些源在国内访问不了，能访问的速度也很慢，所以我们跟换为国内源，国内有很多不错的源，比如阿里源、163源、北京交大、上海交通、清华大学等。
 
 + 首先备份一下系统自带源，以备以后用到
-  	sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup
+  	sudo cp /etc/apt/sources.list  /etc/apt/sources.list.backup
 
 + 打开并删除源设置文件内容
 

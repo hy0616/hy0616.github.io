@@ -7,7 +7,8 @@ categories: web开发
 
 ### 一、安装nodejs
 
-##### **源码安装**
+**源码安装**
+
 1.官网下载nodejs源码，[nodejs官网](http://nodejs.org)或者[nodejs中文网](http://nodejs.cn)，下载相应版本。
 
 <!--more-->
@@ -24,6 +25,7 @@ categories: web开发
     sudo make install  //安装
 
 3.执行`node -v` 显示node版本号，安装成功。
+
 4.安装tj大神写的n(nde版本管理工具)`sudo npm install -g n`,此后就可用n来切换、安装node版本了。
 
 **延伸阅读:**
@@ -40,13 +42,17 @@ sudo n ls  //查看可用node版本
 ### 二、通过NPM安装一系列前端管理工具
 
 1.执行`sudo npm install -g gulp` 命令安装gulp(自动化构建工具)。
+
 2.执行`sudo npm install -g grunt-cli` 命令安装grunt(自动化构建工具)。
+
 3.执行`sudo npm install -g bower` 命令安装bower(前端包管理工具)。
 
 ### 三、安装Git
 
 1.执行`sudo apt-get install git`命令安装git
+
 2.测试git是否安装成功，执行`git --version`命令，输出版本号，安装成功。
+
 3.配置git
 
 	git config --global user.name "Your Name"  //指定用户名
