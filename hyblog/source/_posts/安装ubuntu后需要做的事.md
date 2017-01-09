@@ -45,7 +45,8 @@ categories: Ubuntu
 
 ### 4.win+ubuntu 双系统修改启动顺序
 
-+ 执行`sudo gedit /etc/default/grub`编辑grub配置文件，修改GRUB_DEFAULT，GRUB_DEFAULT代表的就是启动项的顺序，从数字0开始，依次代表如下启动项，（我的电脑为win启动项为2，所以改成 GRUB_DEFAULT=2）。
++ 执行`sudo gedit /etc/defaule/grub`编辑grub配置文件，修改GRUB_DEFAULT项,GRUB_DEFAULT代表的就是启动项的顺序，从数字0开始，依次代表如下启动项，（我的电脑为win启动项为2，所以改成 GRUB_DEFAULT=2）。
+
 + 执行`sudo update-grub`，更新grub，重启电脑生效。
 
 ### 5.安装经典菜单指示器
@@ -73,7 +74,7 @@ categories: Ubuntu
 + 执行`cd flash_player_npapi_linux.x86_64`命令进入解压后文件夹。
 + 执行`sudo cp libflashplayer.so /usr/lib/firefox/browser/plugins`,拷贝到firefox插件目录下。
 
-###7.安装Terminator
+### 7.安装Terminator
 
 > Ubuntu 中默认使用的 shell 终端工具是 gnome-terminal，虽然它已经很好用了，但有时还是无法满足我们程序员各种各样的需求，Terminator可以完美地实现了在 Ubuntu在同一窗口中启动多个终端，并且可以自由的在一个窗口中分割区域建立新终端，还可以通过鼠标拉伸调整每个终端的大小。
 
@@ -90,6 +91,7 @@ categories: Ubuntu
 + 修改GRUB_DEFAULT。  //GRUB_DEFAULT代表的就是启动项的顺序，从0开始。
 
 **延伸阅读**
+
 + 在win系统下安装ubuntu系统后默认启动的是ubuntu系统，说到启动就不得不说GRUB，Linux下大名鼎鼎的启动管理工具，当然现在已经是GRUB2了，GRUB2和GRUB最重要的区别就是，GRUB存放系统启动信息的文为/boot/grub/menu.lst，而GRUB2则为/boot/grub /grub.cfg。
 
 + ~~/boot/grub/grub.cfg~~ 这个文件是根据/etc/grub.d的模板和/etc/default/grub的设置自动生成的，不要修改这个文件。

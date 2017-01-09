@@ -7,7 +7,7 @@ categories: web开发
 
 ### 一、安装nodejs
 
-#####**源码安装**
+##### **源码安装**
 1.官网下载nodejs源码，[nodejs官网](http://nodejs.org)或者[nodejs中文网](http://nodejs.cn)，下载相应版本。
 
 <!--more-->
