@@ -1,0 +1,865 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javaScript," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="每天记录一点点" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="JavaScript DOM编程艺术JavaScript DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScriptDOM编程艺术">
+<meta property="og:url" content="http://hyblog.site/2017/01/04/JavaScriptDOM编程艺术/index.html">
+<meta property="og:site_name" content="每天记录一点点">
+<meta property="og:description" content="JavaScript DOM编程艺术JavaScript DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。">
+<meta property="og:updated_time" content="2017-01-09T08:31:25.037Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScriptDOM编程艺术">
+<meta name="twitter:description" content="JavaScript DOM编程艺术JavaScript DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> JavaScriptDOM编程艺术 | 每天记录一点点 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">每天记录一点点</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScriptDOM编程艺术
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-04T11:01:31+08:00" content="2017-01-04">
+              2017-01-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">javaScript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/01/04/JavaScriptDOM编程艺术/" class="leancloud_visitors" data-flag-title="JavaScriptDOM编程艺术">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="JavaScript-DOM编程艺术"><a href="#JavaScript-DOM编程艺术" class="headerlink" title="JavaScript DOM编程艺术"></a>JavaScript DOM编程艺术</h2><h5 id="JavaScript-DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。"><a href="#JavaScript-DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。" class="headerlink" title="JavaScript DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。"></a>JavaScript DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。</h5><a id="more"></a>
+<h3 id="JavaScript-ECMAscript"><a href="#JavaScript-ECMAscript" class="headerlink" title="JavaScript(ECMAscript)"></a>JavaScript(ECMAscript)</h3><h6 id="1-DHTML是“Dynamic“HTML-动态HTML-的简称。DHTML并不是一项新的技术，而是描述HTML、CSS、JavaScript技术综合的术语。DHTML背后的含义是"><a href="#1-DHTML是“Dynamic“HTML-动态HTML-的简称。DHTML并不是一项新的技术，而是描述HTML、CSS、JavaScript技术综合的术语。DHTML背后的含义是" class="headerlink" title="1.DHTML是“Dynamic“HTML(动态HTML)的简称。DHTML并不是一项新的技术，而是描述HTML、CSS、JavaScript技术综合的术语。DHTML背后的含义是:"></a>1.DHTML是“Dynamic“HTML(动态HTML)的简称。DHTML并不是一项新的技术，而是描述HTML、CSS、JavaScript技术综合的术语。DHTML背后的含义是:</h6><ul>
+<li>利用HTML把网页标记为各种元素;</li>
+<li>利用CSS设置元素样式和他们的显示位置;</li>
+<li>利用JavaScript实时的操控页面和改变样式;</li>
+</ul>
+<h6 id="2-五个常用的DOM方法"><a href="#2-五个常用的DOM方法" class="headerlink" title="2.五个常用的DOM方法:"></a>2.五个常用的DOM方法:</h6><ul>
+<li><code>document.getElementById(&quot;id&quot;)</code>将返回一个对象，该对象对应着文档里的一个特定的元素节点。</li>
+<li><code>document.getElementsByTagName(&quot;div&quot;)</code>将返回一个对象数组，对应着文档里的一组特定的元素节点。</li>
+<li><code>document.getElementsByClassName(&quot;class&quot;)</code>将返回一个对象数组，对应着文档里的一组特定的元素节点。</li>
+<li><code>object.getAttribute(&quot;attribute&quot;)</code> object只能为元素节点。</li>
+<li><code>object.setAttribute(&quot;attribute&quot;,&quot;value&quot;)</code> object只能为元素节点。</li>
+</ul>
+<h6 id="3-JavaScript语言里的对象可以分为三种类型："><a href="#3-JavaScript语言里的对象可以分为三种类型：" class="headerlink" title="3.JavaScript语言里的对象可以分为三种类型："></a>3.JavaScript语言里的对象可以分为三种类型：</h6><ul>
+<li><strong>用户对象</strong>：由程序员自行创建的队形;</li>
+<li><strong>内建对象</strong>：内建JavaScript语言里的对象;</li>
+<li><strong>宿主对象</strong>：由浏览器提供的对象;</li>
+</ul>
+<h6 id="4-一份文档就是一个节点树节点分为不同类型："><a href="#4-一份文档就是一个节点树节点分为不同类型：" class="headerlink" title="4.一份文档就是一个节点树节点分为不同类型："></a>4.一份文档就是一个节点树节点分为不同类型：</h6><ul>
+<li><strong>元素节点</strong>; nodeType属性值为1。</li>
+<li><strong>属性节点</strong>; nodeType属性值为2。</li>
+<li><strong>文本节点</strong>; nodeType属性值为3。</li>
+</ul>
+<h6 id="5-DOM提供的新属性："><a href="#5-DOM提供的新属性：" class="headerlink" title="5.DOM提供的新属性："></a>5.DOM提供的新属性：</h6><ul>
+<li>childNodes 获取任何元素的所有子元素;</li>
+<li>nodeType 总共有12种可取值，但只有3种具有实际价值，元素节点nodeType属性值是1、属性节点nodeType属性值是2、文本节点nodeType属性值是3;</li>
+<li>nodeValue 改变文本节点值;</li>
+<li>firstChild 获取childNodes第一个子元素;</li>
+<li>lastChild 获取childNodes最后一个子元素;</li>
+</ul>
+<h6 id="6-性能考虑"><a href="#6-性能考虑" class="headerlink" title="6.性能考虑"></a>6.性能考虑</h6><ul>
+<li>平稳退化: 确保网页在没有JavaSctipt的情况下也能正常运行;</li>
+<li>分离JavaScript: 把网页结构和内容与JavaScript脚本的动作行为分开;(分离JavaScript、渐进渐强、结构样式分离、)</li>
+<li>向后兼容性: 确保老版本浏览器不会因为JavaScript脚本而死掉;(对象检测、浏览器嗅探技术)</li>
+<li>性能考虑: 确定执行脚本的性能最优;(压缩脚本、合并和放置脚本、尽量少访问DOM、尽量减少标记)</li>
+</ul>
+<h6 id="7-window对象的open-方法"><a href="#7-window对象的open-方法" class="headerlink" title="7.window对象的open()方法"></a>7.window对象的open()方法</h6><p>JavaScript使用window对象的open()方法来创建新的浏览器窗口这个方法有三个参数<code>window.open(url,name,features)</code>,这三个参数都是可选的，第一个参数为新窗口url地址，第二个参数为新窗口名字，第三个参数是一个以逗号分割的字符串，其内容是新窗口的各种属性。示例<code>window.pen(url,name,&quot;width=300,height=500&quot;)</code></p>
+<h6 id="8-”JavaScript-“-伪协议"><a href="#8-”JavaScript-“-伪协议" class="headerlink" title="8.”JavaScript:“ 伪协议"></a>8.”JavaScript:“ 伪协议</h6><p>”真“协议用来在因特网上计算机之间传输数据包，如HTTP协议<code>https://</code>、FTP协议<code>ftp://</code>等，伪协议则是一种非标准化协议。”JavaScript:“伪协议让我们通过一个链接调用JavaScript函数。<code>onclick=&quot;javascript:函数()&quot;</code><br>在HTML文档通过伪协议调用JavaScript代码做法，在较老浏览器或在浏览器禁用JavaScript的情况下会造成链接失败或什么都不做。</p>
+<h6 id="9-搜索机器人-searchbot-网络蜘蛛-web-Spider"><a href="#9-搜索机器人-searchbot-网络蜘蛛-web-Spider" class="headerlink" title="9.搜索机器人(searchbot)网络蜘蛛(web Spider)"></a>9.搜索机器人(searchbot)网络蜘蛛(web Spider)</h6><p>搜索机器人是一个自动化程序，他们浏览web的目的是把各种网页添加到搜索引擎的数据库里，各大搜索引擎都有类似的程序，目前只有少数机器人能够理解JavaScript代码，所以你的JavaScript代码不能平稳退化他们在搜索引擎上的排名就可能大受损害。</p>
+<h6 id="10-共享onload"><a href="#10-共享onload" class="headerlink" title="10.共享onload"></a>10.共享onload</h6><p>假设两个函数都在页面加载时执行，如果逐一绑定到onload事件上它们当中只有最后一个才被执行<br><code>window.onload=函数1();window.onload=函数2();</code><br>解决方法：1.创建匿名函数来包容要被执行的函数，然后把匿名函数绑定到onload事件上<br><code>window.onload=function(){函数1();函数2();}</code><br>2.弹性最佳解决方案，创建通用函数</p>
+<ul>
+<li>把现有的onload事件处理函数的值存入变量oldonload;</li>
+<li>如果事件上没有绑定任何函数，把新的函数添加给事件;</li>
+<li>如果事件绑定了一些函数，就把新函数追加到现有函数末尾;</li>
+</ul>
+<pre><code>function addloadEvent (fun){
+    var oldonload = window.onload;
+    if(typeof window.onload != &apos;function&apos;){
+        window.onload = fun;
+    }else{
+        oldonload();
+        fun();
+    }
+}
+</code></pre><h6 id="11-DOM-Core-和-HTML-DOM"><a href="#11-DOM-Core-和-HTML-DOM" class="headerlink" title="11.DOM Core 和 HTML DOM"></a>11.DOM Core 和 HTML DOM</h6><h6 id="12-动态创建标记"><a href="#12-动态创建标记" class="headerlink" title="12.动态创建标记"></a>12.动态创建标记</h6><p>传统方法:</p>
+<ul>
+<li>document对象的write方法可以方便快捷的把字符串插到文档里去。<br><code>document.write(&quot;&lt;p&gt;This is write&lt;/p&gt;&quot;)</code> 但是它违背的行为与表现分离的原则。</li>
+<li>innerHTML属性可以读、写给定元素里HTML内容，当插入大段HTML内容，innerHTML属性更适用。</li>
+</ul>
+<pre><code>window.onload = function(){
+     var testdiv = document.getElementById(&quot;div&quot;);
+     testdiv.innerHTML = &quot;&lt;p&gt;This is innerHTML&lt;/p&gt;&quot;;
+}
+</code></pre><p>DOM方法:</p>
+<ul>
+<li><strong>createElement()</strong>方法完成创建新的元素<code>document.createElement(&quot;p&quot;)</code>，但是不属于任何一棵DOM节点树的组成部分，这种情况称为<strong>节点碎片</strong>。</li>
+<li><strong>createTextNode()</strong>方法为新创建的元素创建文本节点<code>document.createTextNode(&quot;Hellow World&quot;)</code>。</li>
+<li><strong>appendChild()</strong>方法插入文档节点树<code>parent.appendChild(child)</code>。</li>
+<li><strong>inserBefore()</strong>方法把一个新的元素插入到现有元素。</li>
+<li><strong>nextSibling()</strong>属性，目标元素的下一个兄弟元素即目标元素的nextSinling属性</li>
+</ul>
+<pre><code>//插入为目标元素的子元素
+window.onload = function(){
+    var child = document.createElement(&quot;p&quot;);
+    var parent = document.getElementById(&apos;textdiv&apos;);
+    parent.appendChild(child);
+    var txt = document.createTextNode(&quot;Hello world&quot;);
+    child.appendChild(txt);
+}
+
+//使用inserBefore方法插入为目标元素的兄弟元素前边
+window.onload = function(){
+var textp = document.createElement(&quot;p&quot;);
+    var textdiv= document.getElementById(&apos;textdiv&apos;);
+    var parent = textdiv.parentNode;
+    parent.inserBefore(textdiv,textp);
+    var txt = document.createTextNode(&quot;Hello world&quot;);
+    child.appendChild(txt);
+}
+
+//自己编写inserAfter
+//newElement 新元素; targetelement 目标元素
+function inserAfter (newElement,targetElement){
+    var parent = targetElement,patentNode;
+    if(parent.lastChild == targetElement)
+    parent.appendChild(newElement);
+    }else{
+    parent.inserBefore(newElement,targetElement.nextSibling);
+}
+</code></pre><h6 id="13-Ajax"><a href="#13-Ajax" class="headerlink" title="13.Ajax"></a>13.Ajax</h6><p>Ajax主要优势就是对页面的请求以异步方式发送到服务器。<br>Ajax技术的核心就是XMLHttpRequest对象。</p>
+<h6 id="14-三位一体的网页"><a href="#14-三位一体的网页" class="headerlink" title="14.三位一体的网页"></a>14.三位一体的网页</h6><ul>
+<li>结构层 由HTML或XHTML之类的标记语言负责创建;</li>
+<li>表现层 由CSS负责完成，描述页面应该如何呈现;</li>
+<li>行为层 JavaScript和DOM的主宰领域;</li>
+</ul>
+<h6 id="15-用css和js做table斑马线效果"><a href="#15-用css和js做table斑马线效果" class="headerlink" title="15.用css和js做table斑马线效果"></a>15.用css和js做table斑马线效果</h6><p>CSS:<br>== :nth-child(n) 选择器匹配属于其父元素的第 N 个子元素，不论元素的类型。==<br>== n 可以是数字、关键词或公式。==<br>== Odd 和 even 是可用于匹配下标是奇数或偶数的子元素的关键词（第一个子元素的下标是 1）。==<br><code>tr:nth-child(old) {background-color:#ffc}</code><br><code>tr:nth-child(even) {background-color:#fff}</code><br>js:</p>
+<pre><code>function table (){
+    if(documen.getElementsByTagName)return false;
+    var tables = document.getElementsByTagName(&quot;table&quot;);
+    var odd,rows;
+    for(var i=0; i&gt;tables.length;i++){
+        odd = false;
+        rows = tables[i].getElementByTagName(&quot;tr&quot;);
+        for(var j=0;j&lt;rows;j++){
+            if(odd){
+                rows[j].style.background = #ffc;
+                odd = false;
+            }else{
+                odd = true;
+            }
+        }
+    }
+}
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/weixin.png" alt="HY WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javaScript/" rel="tag">#javaScript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/09/github-Hexo搭建博客平台-简记录/" rel="prev" title="github+Hexo搭建博客平台-简记录">
+                github+Hexo搭建博客平台-简记录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/heard.jpg"
+               alt="HY" />
+          <p class="site-author-name" itemprop="name">HY</p>
+          <p class="site-description motion-element" itemprop="description">生命不止，奋斗不息</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/hy0616" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-DOM编程艺术"><span class="nav-number">1.</span> <span class="nav-text">JavaScript DOM编程艺术</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#JavaScript-DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">JavaScript DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-ECMAscript"><span class="nav-number">1.1.</span> <span class="nav-text">JavaScript(ECMAscript)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-DHTML是“Dynamic“HTML-动态HTML-的简称。DHTML并不是一项新的技术，而是描述HTML、CSS、JavaScript技术综合的术语。DHTML背后的含义是"><span class="nav-number">1.1.0.0.1.</span> <span class="nav-text">1.DHTML是“Dynamic“HTML(动态HTML)的简称。DHTML并不是一项新的技术，而是描述HTML、CSS、JavaScript技术综合的术语。DHTML背后的含义是:</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-五个常用的DOM方法"><span class="nav-number">1.1.0.0.2.</span> <span class="nav-text">2.五个常用的DOM方法:</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-JavaScript语言里的对象可以分为三种类型："><span class="nav-number">1.1.0.0.3.</span> <span class="nav-text">3.JavaScript语言里的对象可以分为三种类型：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-一份文档就是一个节点树节点分为不同类型："><span class="nav-number">1.1.0.0.4.</span> <span class="nav-text">4.一份文档就是一个节点树节点分为不同类型：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-DOM提供的新属性："><span class="nav-number">1.1.0.0.5.</span> <span class="nav-text">5.DOM提供的新属性：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-性能考虑"><span class="nav-number">1.1.0.0.6.</span> <span class="nav-text">6.性能考虑</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-window对象的open-方法"><span class="nav-number">1.1.0.0.7.</span> <span class="nav-text">7.window对象的open()方法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#8-”JavaScript-“-伪协议"><span class="nav-number">1.1.0.0.8.</span> <span class="nav-text">8.”JavaScript:“ 伪协议</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#9-搜索机器人-searchbot-网络蜘蛛-web-Spider"><span class="nav-number">1.1.0.0.9.</span> <span class="nav-text">9.搜索机器人(searchbot)网络蜘蛛(web Spider)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#10-共享onload"><span class="nav-number">1.1.0.0.10.</span> <span class="nav-text">10.共享onload</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#11-DOM-Core-和-HTML-DOM"><span class="nav-number">1.1.0.0.11.</span> <span class="nav-text">11.DOM Core 和 HTML DOM</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#12-动态创建标记"><span class="nav-number">1.1.0.0.12.</span> <span class="nav-text">12.动态创建标记</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#13-Ajax"><span class="nav-number">1.1.0.0.13.</span> <span class="nav-text">13.Ajax</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#14-三位一体的网页"><span class="nav-number">1.1.0.0.14.</span> <span class="nav-text">14.三位一体的网页</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#15-用css和js做table斑马线效果"><span class="nav-number">1.1.0.0.15.</span> <span class="nav-text">15.用css和js做table斑马线效果</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HY</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("XgmH8me5mFLsPWe20r2i4cOI-gzGzoHsz", "f1DOQxOjgWfpfA76HVFuTM3n");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
