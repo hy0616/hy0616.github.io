@@ -86,16 +86,19 @@
 
 
 
-<meta name="description" content="一、安装nodejs源码安装1.官网下载nodejs源码，nodejs官网或者nodejs中文网，下载相应版本。">
+<meta name="description" content="一、安装nodejs源码安装
+1.官网下载nodejs源码，nodejs官网或者nodejs中文网，下载相应版本。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ubuntu搭建web开发环境">
 <meta property="og:url" content="http://hyblog.site/2017/01/09/ubuntu搭建web开发环境/index.html">
 <meta property="og:site_name" content="每天记录一点点">
-<meta property="og:description" content="一、安装nodejs源码安装1.官网下载nodejs源码，nodejs官网或者nodejs中文网，下载相应版本。">
-<meta property="og:updated_time" content="2017-01-09T09:11:44.933Z">
+<meta property="og:description" content="一、安装nodejs源码安装
+1.官网下载nodejs源码，nodejs官网或者nodejs中文网，下载相应版本。">
+<meta property="og:updated_time" content="2017-01-09T10:03:20.097Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ubuntu搭建web开发环境">
-<meta name="twitter:description" content="一、安装nodejs源码安装1.官网下载nodejs源码，nodejs官网或者nodejs中文网，下载相应版本。">
+<meta name="twitter:description" content="一、安装nodejs源码安装
+1.官网下载nodejs源码，nodejs官网或者nodejs中文网，下载相应版本。">
 
 
 
@@ -331,7 +334,8 @@
       
 
       
-        <h3 id="一、安装nodejs"><a href="#一、安装nodejs" class="headerlink" title="一、安装nodejs"></a>一、安装nodejs</h3><h5 id="源码安装"><a href="#源码安装" class="headerlink" title="源码安装"></a><strong>源码安装</strong></h5><p>1.官网下载nodejs源码，<a href="http://nodejs.org" target="_blank" rel="external">nodejs官网</a>或者<a href="http://nodejs.cn" target="_blank" rel="external">nodejs中文网</a>，下载相应版本。</p>
+        <h3 id="一、安装nodejs"><a href="#一、安装nodejs" class="headerlink" title="一、安装nodejs"></a>一、安装nodejs</h3><p><strong>源码安装</strong></p>
+<p>1.官网下载nodejs源码，<a href="http://nodejs.org" target="_blank" rel="external">nodejs官网</a>或者<a href="http://nodejs.cn" target="_blank" rel="external">nodejs中文网</a>，下载相应版本。</p>
 <a id="more"></a>
 <p>2.源码解压安装</p>
 <pre><code>apt-get update  //更新源，近期已更新可省略
@@ -342,10 +346,15 @@ cd node-v6.9.2  //进入源码
 sudo ./configure  //检测系统配置，生成makefile文件。
 sudo make  //源码编译
 sudo make install  //安装
-</code></pre><p>3.执行<code>node -v</code> 显示node版本号，安装成功。<br>4.安装tj大神写的n(nde版本管理工具)<code>sudo npm install -g n</code>,此后就可用n来切换、安装node版本了。</p>
+</code></pre><p>3.执行<code>node -v</code> 显示node版本号，安装成功。</p>
+<p>4.安装tj大神写的n(nde版本管理工具)<code>sudo npm install -g n</code>,此后就可用n来切换、安装node版本了。</p>
 <p><strong>延伸阅读:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">sudo n  //切换nodejs版本</div><div class="line">sudo n latest  //安装官网最新发布版本</div><div class="line">sudo n stable  //安装官网稳定版本</div><div class="line">sudo n lts  //安装官网最新正式发布LTS版本</div><div class="line">sudo n 6.9.2  //安装指定版本</div><div class="line">sudo n rm 6.9.2 或 sudo n -6.9.2   //删除指定版本nodejs</div><div class="line">sudo n ls  //查看可用node版本</div></pre></td></tr></table></figure></p>
-<h3 id="二、通过NPM安装一系列前端管理工具"><a href="#二、通过NPM安装一系列前端管理工具" class="headerlink" title="二、通过NPM安装一系列前端管理工具"></a>二、通过NPM安装一系列前端管理工具</h3><p>1.执行<code>sudo npm install -g gulp</code> 命令安装gulp(自动化构建工具)。<br>2.执行<code>sudo npm install -g grunt-cli</code> 命令安装grunt(自动化构建工具)。<br>3.执行<code>sudo npm install -g bower</code> 命令安装bower(前端包管理工具)。</p>
-<h3 id="三、安装Git"><a href="#三、安装Git" class="headerlink" title="三、安装Git"></a>三、安装Git</h3><p>1.执行<code>sudo apt-get install git</code>命令安装git<br>2.测试git是否安装成功，执行<code>git --version</code>命令，输出版本号，安装成功。<br>3.配置git</p>
+<h3 id="二、通过NPM安装一系列前端管理工具"><a href="#二、通过NPM安装一系列前端管理工具" class="headerlink" title="二、通过NPM安装一系列前端管理工具"></a>二、通过NPM安装一系列前端管理工具</h3><p>1.执行<code>sudo npm install -g gulp</code> 命令安装gulp(自动化构建工具)。</p>
+<p>2.执行<code>sudo npm install -g grunt-cli</code> 命令安装grunt(自动化构建工具)。</p>
+<p>3.执行<code>sudo npm install -g bower</code> 命令安装bower(前端包管理工具)。</p>
+<h3 id="三、安装Git"><a href="#三、安装Git" class="headerlink" title="三、安装Git"></a>三、安装Git</h3><p>1.执行<code>sudo apt-get install git</code>命令安装git</p>
+<p>2.测试git是否安装成功，执行<code>git --version</code>命令，输出版本号，安装成功。</p>
+<p>3.配置git</p>
 <pre><code>git config --global user.name &quot;Your Name&quot;  //指定用户名
 git config --global user.email &quot;youremail@domain.com&quot;  //指定邮箱
 git config --list  //查看配置信息
@@ -427,17 +436,13 @@ cd sublime-text-imfix  //进入
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/09/github-Hexo搭建博客平台-简记录/" rel="next" title="github+Hexo搭建博客平台-简记录">
-                <i class="fa fa-chevron-left"></i> github+Hexo搭建博客平台-简记录
+              <a href="/2017/01/08/使用select2插件遇到问题总结/" rel="next" title="使用select2插件遇到问题总结">
+                <i class="fa fa-chevron-left"></i> 使用select2插件遇到问题总结
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/01/09/安装ubuntu后需要做的事/" rel="prev" title="安装ubuntu后需要做的事">
-                安装ubuntu后需要做的事 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -505,7 +510,7 @@ cd sublime-text-imfix  //进入
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -522,7 +527,7 @@ cd sublime-text-imfix  //进入
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -569,7 +574,7 @@ cd sublime-text-imfix  //进入
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、安装nodejs"><span class="nav-number">1.</span> <span class="nav-text">一、安装nodejs</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#源码安装"><span class="nav-number">1.0.1.</span> <span class="nav-text">源码安装</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、通过NPM安装一系列前端管理工具"><span class="nav-number">2.</span> <span class="nav-text">二、通过NPM安装一系列前端管理工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、安装Git"><span class="nav-number">3.</span> <span class="nav-text">三、安装Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、安装Sublime-Text3"><span class="nav-number">4.</span> <span class="nav-text">四、安装Sublime Text3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、安装chrome"><span class="nav-number">5.</span> <span class="nav-text">五、安装chrome</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、安装nodejs"><span class="nav-number">1.</span> <span class="nav-text">一、安装nodejs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、通过NPM安装一系列前端管理工具"><span class="nav-number">2.</span> <span class="nav-text">二、通过NPM安装一系列前端管理工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、安装Git"><span class="nav-number">3.</span> <span class="nav-text">三、安装Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、安装Sublime-Text3"><span class="nav-number">4.</span> <span class="nav-text">四、安装Sublime Text3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、安装chrome"><span class="nav-number">5.</span> <span class="nav-text">五、安装chrome</span></a></li></ol></div>
             
           </div>
         </section>

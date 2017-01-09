@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Ubuntu," />
+  <meta name="keywords" content="github pages,hexo,git," />
 
 
 
@@ -86,19 +86,19 @@
 
 
 
-<meta name="description" content="1.安装Vimsudo apt-get install vim
-2.更新源">
+<meta name="description" content="1.创建github帐号，邮箱进行认证。
+2.创建username.github.io仓库，仓库名称是github特定名称。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="安装ubuntu后需要做的事">
-<meta property="og:url" content="http://hyblog.site/2017/01/09/安装ubuntu后需要做的事/index.html">
+<meta property="og:title" content="github+Hexo搭建博客平台-简记录">
+<meta property="og:url" content="http://hyblog.site/2017/01/03/github-Hexo搭建博客平台-简记录/index.html">
 <meta property="og:site_name" content="每天记录一点点">
-<meta property="og:description" content="1.安装Vimsudo apt-get install vim
-2.更新源">
-<meta property="og:updated_time" content="2017-01-09T09:03:41.909Z">
+<meta property="og:description" content="1.创建github帐号，邮箱进行认证。
+2.创建username.github.io仓库，仓库名称是github特定名称。">
+<meta property="og:updated_time" content="2017-01-09T09:58:30.565Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="安装ubuntu后需要做的事">
-<meta name="twitter:description" content="1.安装Vimsudo apt-get install vim
-2.更新源">
+<meta name="twitter:title" content="github+Hexo搭建博客平台-简记录">
+<meta name="twitter:description" content="1.创建github帐号，邮箱进行认证。
+2.创建username.github.io仓库，仓库名称是github特定名称。">
 
 
 
@@ -116,7 +116,7 @@
   };
 </script>
 
-  <title> 安装ubuntu后需要做的事 | 每天记录一点点 </title>
+  <title> github+Hexo搭建博客平台-简记录 | 每天记录一点点 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -266,7 +266,7 @@
             
             
               
-                安装ubuntu后需要做的事
+                github+Hexo搭建博客平台-简记录
               
             
           </h1>
@@ -278,8 +278,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-09T16:40:27+08:00" content="2017-01-09">
-              2017-01-09
+            <time itemprop="dateCreated" datetime="2017-01-03T16:02:10+08:00" content="2017-01-03">
+              2017-01-03
             </time>
           </span>
 
@@ -292,8 +292,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Ubuntu/" itemprop="url" rel="index">
-                    <span itemprop="name">Ubuntu</span>
+                  <a href="/categories/github/" itemprop="url" rel="index">
+                    <span itemprop="name">github</span>
                   </a>
                 </span>
 
@@ -312,7 +312,7 @@
 
           
           
-             <span id="/2017/01/09/安装ubuntu后需要做的事/" class="leancloud_visitors" data-flag-title="安装ubuntu后需要做的事">
+             <span id="/2017/01/03/github-Hexo搭建博客平台-简记录/" class="leancloud_visitors" data-flag-title="github+Hexo搭建博客平台-简记录">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -334,88 +334,28 @@
       
 
       
-        <h3 id="1-安装Vim"><a href="#1-安装Vim" class="headerlink" title="1.安装Vim"></a>1.安装Vim</h3><pre><code>sudo apt-get install vim
-</code></pre><h3 id="2-更新源"><a href="#2-更新源" class="headerlink" title="2.更新源"></a>2.更新源</h3><a id="more"></a>
-<blockquote>
-<p>系统自带的有些源在国内访问不了，能访问的速度也很慢，所以我们跟换为国内源，国内有很多不错的源，比如阿里源、163源、北京交大、上海交通、清华大学等。</p>
-</blockquote>
-<ul>
-<li><p>首先备份一下系统自带源，以备以后用到</p>
-<pre><code>sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup
-</code></pre></li>
-<li><p>打开并删除源设置文件内容</p>
-<pre><code>sudo gedit /etc/apt/sources.list
-</code></pre></li>
-<li><p>将国内源添加到配置文件，同步更新资源包</p>
-<pre><code>apt-get update                   //更新软件源
-apt-get upgrade                 //升级已安装的所有软件包
-</code></pre></li>
-</ul>
-<h3 id="3-双系统时间修正"><a href="#3-双系统时间修正" class="headerlink" title="3.双系统时间修正"></a>3.双系统时间修正</h3><blockquote>
-<p>Ubuntu和Windows默认的时间管理方式不同，所以双系统发生时间错乱是正常的。Ubuntu默认时间是把BIOS时间当成GMT+0时间，也就是世界标准时，而我国在东八区(GMT+8)，所以如果你的Ubuntu位置是中国的话你系统显示的时间就是BIOS时间+8小时。假如现在是早上8点，那么你Ubuntu会显示8点，这时BIOS中的时间是0点。</p>
-</blockquote>
-<ul>
-<li><p>ubuntu16.04以上版本</p>
-<pre><code>sudo vim /etc/default/rcS   //将UTC=yes设为UTC=no。
-</code></pre></li>
-<li><p>ubuntu16.4版本</p>
-<pre><code>timedatectl set-local-rtc 1 --adjust-system-clock  //关闭UTC并重启
-timedatectl set-ntp 0
-</code></pre></li>
-</ul>
-<p><strong>延伸阅读：</strong>开启win time服务<br>同时按下“win键”+“x”组合键，输入“services.msc”,进入“服务项”列表，找到“Windows time ”服务，双击打开,进入服务项属性对话框，点击下方“启动”选项，然后将其启动类型更改为“自动”点击确定,重启生效。</p>
-<h3 id="4-win-ubuntu-双系统修改启动顺序"><a href="#4-win-ubuntu-双系统修改启动顺序" class="headerlink" title="4.win+ubuntu 双系统修改启动顺序"></a>4.win+ubuntu 双系统修改启动顺序</h3><ul>
-<li><p>执行<code>sudo gedit /etc/defaule/grub</code>编辑grub配置文件，修改GRUB_DEFAULT项,GRUB_DEFAULT代表的就是启动项的顺序，从数字0开始，依次代表如下启动项，（我的电脑为win启动项为2，所以改成 GRUB_DEFAULT=2）。</p>
-</li>
-<li><p>执行<code>sudo update-grub</code>，更新grub，重启电脑生效。</p>
-</li>
-</ul>
-<h3 id="5-安装经典菜单指示器"><a href="#5-安装经典菜单指示器" class="headerlink" title="5.安装经典菜单指示器"></a>5.安装经典菜单指示器</h3><pre><code>sudo apt-get update
-sudo apt-get install classicmenu-indicator
-</code></pre><p><strong>延伸阅读</strong><br>通过<code>sudo add-apt-repository ppa: xxx/ppa</code>命令在source.list里添加 ppa 源了（同时完成导入key），++add-apt-repository++是由 <strong>Python-software-properties</strong>这个工具包提供的,所以要先安装python-software-properties 才能使用 add-apt-repository,<br>安装命令：<code>apt-get install python-software-properties</code>。</p>
-<h3 id="6-Firefox浏览器设置中文"><a href="#6-Firefox浏览器设置中文" class="headerlink" title="6.Firefox浏览器设置中文"></a>6.Firefox浏览器设置中文</h3><p><strong>检查修改方法分以下几种</strong></p>
-<p>1.打开浏览器输入<strong>about:config</strong>将<strong>general.useragent.locale</strong>改为”zh-CN”，重启浏览器生效。</p>
-<p>2.执行<code>sudo apt-get install firefox-locale-zh-hans</code>命令安装火狐中文包，重启生效。</p>
-<p>3.查看是否安装ubuntu中文语言包，选择System-&gt;Administration-&gt;Language Support(系统设置&gt;全部设置&gt;语言支持)，系统会自动加载所需语言文件，选择安装Chinese(Simplified)，安装升级完成后将汉语(中国)移至最上边，点击应用到整个系统，重启生效。</p>
-<p><strong>延伸阅读：安装Adobe Flash player插件</strong></p>
-<ul>
-<li>官网下载<a href="https://get.adobe.com/flashplayer" target="_blank" rel="external">下载地址</a>，这里选择tar.gz for liunx版本下载。</li>
-<li>执行<code>sudo tar -zxvf flash_player_npapi_linux.x86_64.tar.gz</code>进行解压。</li>
-<li>执行<code>cd flash_player_npapi_linux.x86_64</code>命令进入解压后文件夹。</li>
-<li>执行<code>sudo cp libflashplayer.so /usr/lib/firefox/browser/plugins</code>,拷贝到firefox插件目录下。</li>
-</ul>
-<h3 id="7-安装Terminator"><a href="#7-安装Terminator" class="headerlink" title="7.安装Terminator"></a>7.安装Terminator</h3><blockquote>
-<p>Ubuntu 中默认使用的 shell 终端工具是 gnome-terminal，虽然它已经很好用了，但有时还是无法满足我们程序员各种各样的需求，Terminator可以完美地实现了在 Ubuntu在同一窗口中启动多个终端，并且可以自由的在一个窗口中分割区域建立新终端，还可以通过鼠标拉伸调整每个终端的大小。</p>
-</blockquote>
-<pre><code>sudo apt-get install terminator
-</code></pre><p><strong>延伸阅读：设置键盘快捷键</strong></p>
-<ul>
-<li>系统设置–文本输入–键盘设置–自定义快捷键–点击+号增加自定义快捷键。</li>
-<li>填写名称和命令(名称随便填写，命令填写terminator)。</li>
-</ul>
-<h3 id="8-win-ubuntu双系统改变启动顺序"><a href="#8-win-ubuntu双系统改变启动顺序" class="headerlink" title="8.win+ubuntu双系统改变启动顺序"></a>8.win+ubuntu双系统改变启动顺序</h3><ul>
-<li>执行<code>sudo gedit /etc/default/grub</code>。  //编辑配置文件</li>
-<li>修改GRUB_DEFAULT。  //GRUB_DEFAULT代表的就是启动项的顺序，从0开始。</li>
-</ul>
-<p><strong>延伸阅读</strong></p>
-<ul>
-<li><p>在win系统下安装ubuntu系统后默认启动的是ubuntu系统，说到启动就不得不说GRUB，Linux下大名鼎鼎的启动管理工具，当然现在已经是GRUB2了，GRUB2和GRUB最重要的区别就是，GRUB存放系统启动信息的文为/boot/grub/menu.lst，而GRUB2则为/boot/grub /grub.cfg。</p>
-</li>
-<li><p><del>/boot/grub/grub.cfg</del> 这个文件是根据/etc/grub.d的模板和/etc/default/grub的设置自动生成的，不要修改这个文件。</p>
-</li>
-</ul>
-<h3 id="9-安装有道词典"><a href="#9-安装有道词典" class="headerlink" title="9.安装有道词典"></a>9.安装有道词典</h3><p><a href="http://cidian.youdao.com/multi.html?vendor=fanyiweb" target="_blank" rel="external">官网</a>下载相应deb包可直接安装既可。</p>
-<p>注：Ubuntu 16.04因为有些依赖问题就无法安装成功，因为官方的deb包（Ubuntu版本的）依赖gstreamer0.10-plugins-ugly，但是该软件在16.04里面已经没有了。</p>
-<p><strong>解决办法</strong><br>1.下载deepin的包可以正常安装（亲测可用）。<br>2.去掉deb包里面对于该库的依赖</p>
-<ul>
-<li>从官网下载Ubuntu版本的deb包。</li>
-<li>创建youdao-dict目录，把该deb包解压到youdao-dict目录。<code>dpkg -X ./youdao-dict_1.1.0-0-ubuntu_amd64.deb  youdao-dict</code></li>
-<li>解压deb包中的control信息（包的依赖就写在这个文件里面）<code>dpkg -e ./youdao-dict_1.1.0-0-ubuntu_amd64.deb youdao/DEBIAN</code></li>
-<li>编辑control文件，删除Depends里面的gstreamer0.10-plugins-ugly。</li>
-<li>重新打包<code>dpkg-deb -b youdao youdaobuild.deb</code></li>
-<li>安装重新打包的安装包<code>dpkg -i youdaobuild.deb</code></li>
-</ul>
-
+        <p>1.创建github帐号，邮箱进行认证。</p>
+<p>2.创建username.github.io仓库，仓库名称是github特定名称。</p>
+<a id="more"></a>
+<p>3.克隆远程仓库到本地<code>git clone &quot;地址&quot;</code></p>
+<p>4.本地仓库操作</p>
+<pre><code>cd username.github.io   //进入本地仓库
+mkdir blog      //新建blog文件夹
+hexo init    //初始化hexo，生成配置文件
+npm install hexo-deployer-git --save   //下载添加hexo中git依赖插件，利用hexo上传远程仓库用到。
+</code></pre><p>5.下载配置next主题<a href="http://theme-next.iissnan.com/" target="_blank" rel="external">官网详细流程</a></p>
+<p>6.一个分支用来存放Hexo生成的网站原始的文件，另一个分支用来存放生成的静态网页</p>
+<pre><code>git branch hexo    //创建hexo分支
+git checkout hexo   //切换到hexo分支
+git add /blog     //添加原始文件到暂存区
+git commit -m&quot;版本注释&quot;  //从本地暂存区提交至本地仓库hexo分支
+git push origin hexo    //将本地hexo分支提交至远程仓库
+</code></pre><p>7.将github默认分支改为hexo，因为以后操作都会在hexo分支中。<br>8.将生成静态网页上传至master分支中。</p>
+<pre><code>hexo clean  //清理生成文件
+hexo g     //从新生成静态网页
+hexo s     //开启本地服务器，可用于本地测试
+hexo d     //上传至github
+</code></pre>
       
     </div>
 
@@ -452,7 +392,11 @@ sudo apt-get install classicmenu-indicator
       
         <div class="post-tags">
           
-            <a href="/tags/Ubuntu/" rel="tag">#Ubuntu</a>
+            <a href="/tags/github-pages/" rel="tag">#github pages</a>
+          
+            <a href="/tags/hexo/" rel="tag">#hexo</a>
+          
+            <a href="/tags/git/" rel="tag">#git</a>
           
         </div>
       
@@ -461,13 +405,13 @@ sudo apt-get install classicmenu-indicator
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/09/ubuntu搭建web开发环境/" rel="next" title="ubuntu搭建web开发环境">
-                <i class="fa fa-chevron-left"></i> ubuntu搭建web开发环境
-              </a>
-            
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/04/JavaScriptDOM编程艺术/" rel="prev" title="JavaScriptDOM编程艺术">
+                JavaScriptDOM编程艺术 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -535,7 +479,7 @@ sudo apt-get install classicmenu-indicator
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -552,7 +496,7 @@ sudo apt-get install classicmenu-indicator
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -599,7 +543,7 @@ sudo apt-get install classicmenu-indicator
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装Vim"><span class="nav-number">1.</span> <span class="nav-text">1.安装Vim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-更新源"><span class="nav-number">2.</span> <span class="nav-text">2.更新源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-双系统时间修正"><span class="nav-number">3.</span> <span class="nav-text">3.双系统时间修正</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-win-ubuntu-双系统修改启动顺序"><span class="nav-number">4.</span> <span class="nav-text">4.win+ubuntu 双系统修改启动顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-安装经典菜单指示器"><span class="nav-number">5.</span> <span class="nav-text">5.安装经典菜单指示器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Firefox浏览器设置中文"><span class="nav-number">6.</span> <span class="nav-text">6.Firefox浏览器设置中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-安装Terminator"><span class="nav-number">7.</span> <span class="nav-text">7.安装Terminator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-win-ubuntu双系统改变启动顺序"><span class="nav-number">8.</span> <span class="nav-text">8.win+ubuntu双系统改变启动顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-安装有道词典"><span class="nav-number">9.</span> <span class="nav-text">9.安装有道词典</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>

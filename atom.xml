@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hyblog.site/"/>
-  <updated>2017-01-09T09:03:41.909Z</updated>
+  <updated>2017-01-09T10:03:20.097Z</updated>
   <id>http://hyblog.site/</id>
   
   <author>
@@ -16,20 +16,130 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>ubuntu搭建web开发环境</title>
+    <link href="http://hyblog.site/2017/01/09/ubuntu%E6%90%AD%E5%BB%BAweb%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
+    <id>http://hyblog.site/2017/01/09/ubuntu搭建web开发环境/</id>
+    <published>2017-01-09T08:40:14.000Z</published>
+    <updated>2017-01-09T10:03:20.097Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="一、安装nodejs"><a href="#一、安装nodejs" class="headerlink" title="一、安装nodejs"></a>一、安装nodejs</h3><p><strong>源码安装</strong></p>
+<p>1.官网下载nodejs源码，<a href="http://nodejs.org" target="_blank" rel="external">nodejs官网</a>或者<a href="http://nodejs.cn" target="_blank" rel="external">nodejs中文网</a>，下载相应版本。</p>
+<a id="more"></a>
+<p>2.源码解压安装</p>
+<pre><code>apt-get update  //更新源，近期已更新可省略
+apt-get install python gcc make g++  //安装依赖包，已安装可省略
+sudo cp -r node-v6.9.2.tar.gz /opt/nodejs  //复制源码到安装目录
+sudo tar -zxvf node-v6.9.2.tar.gz  //解压源码
+cd node-v6.9.2  //进入源码
+sudo ./configure  //检测系统配置，生成makefile文件。
+sudo make  //源码编译
+sudo make install  //安装
+</code></pre><p>3.执行<code>node -v</code> 显示node版本号，安装成功。</p>
+<p>4.安装tj大神写的n(nde版本管理工具)<code>sudo npm install -g n</code>,此后就可用n来切换、安装node版本了。</p>
+<p><strong>延伸阅读:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">sudo n  //切换nodejs版本</div><div class="line">sudo n latest  //安装官网最新发布版本</div><div class="line">sudo n stable  //安装官网稳定版本</div><div class="line">sudo n lts  //安装官网最新正式发布LTS版本</div><div class="line">sudo n 6.9.2  //安装指定版本</div><div class="line">sudo n rm 6.9.2 或 sudo n -6.9.2   //删除指定版本nodejs</div><div class="line">sudo n ls  //查看可用node版本</div></pre></td></tr></table></figure></p>
+<h3 id="二、通过NPM安装一系列前端管理工具"><a href="#二、通过NPM安装一系列前端管理工具" class="headerlink" title="二、通过NPM安装一系列前端管理工具"></a>二、通过NPM安装一系列前端管理工具</h3><p>1.执行<code>sudo npm install -g gulp</code> 命令安装gulp(自动化构建工具)。</p>
+<p>2.执行<code>sudo npm install -g grunt-cli</code> 命令安装grunt(自动化构建工具)。</p>
+<p>3.执行<code>sudo npm install -g bower</code> 命令安装bower(前端包管理工具)。</p>
+<h3 id="三、安装Git"><a href="#三、安装Git" class="headerlink" title="三、安装Git"></a>三、安装Git</h3><p>1.执行<code>sudo apt-get install git</code>命令安装git</p>
+<p>2.测试git是否安装成功，执行<code>git --version</code>命令，输出版本号，安装成功。</p>
+<p>3.配置git</p>
+<pre><code>git config --global user.name &quot;Your Name&quot;  //指定用户名
+git config --global user.email &quot;youremail@domain.com&quot;  //指定邮箱
+git config --list  //查看配置信息
+</code></pre><p>4.创建本地repository</p>
+<pre><code>sudo git init localGit //创建名为localGit的本地仓库
+cd localGit  //进入文件夹
+touch test.md  //创建一个文件
+git add test.md  //添加至本地仓库
+git commit -m &quot;注释&quot;  //提交至本地仓库
+</code></pre><p>5.提交远程仓库</p>
+<pre><code>git remote add origin git@github.com:&lt;github用户名&gt;/&lt;仓库名称&gt;git    //本地仓库可远程仓库链接
+git push -u origin master  //提交至远程仓库，origin(仓库名)，master(指定分支)
+</code></pre><h3 id="四、安装Sublime-Text3"><a href="#四、安装Sublime-Text3" class="headerlink" title="四、安装Sublime Text3"></a>四、安装Sublime Text3</h3><p>1.首先添加sublime text 3的仓库</p>
+<pre><code>sudo add-apt-repository ppa:webupd8team/sublime-text-3
+</code></pre><p>2.更新软件库</p>
+<pre><code>sudo apt-get update
+</code></pre><p>3.安装Sublime Text 3</p>
+<pre><code>sudo apt install sublime-text-installer
+</code></pre><p>4.安装插件管理器Packeage Control</p>
+<p>执行命令<code>subl</code>打开Sublime Text 3,按快捷键<strong>ctrl + shift + p</strong> 在弹出的窗口中查找<strong>install package control</strong>命令，单击运行.</p>
+<p>5.解决中文输入法问题</p>
+<ul>
+<li>安装fcitx<code>sudo apt-get install fcitx-table-pinyin</code></li>
+<li>配置更改为fcitx，重启电脑</li>
+<li><p>打补丁，github<a href="https://github.com/lyfeyaj/sublime-text-imfix" target="_blank" rel="external">下载地址</a></p>
+<pre><code>sudo apt-get update &amp;&amp; sudo apt-get upgrade  //更新
+git clone https://github.com/lyfeyaj/sublime-text-imfix.git  //下载
+cd sublime-text-imfix  //进入
+./sublime-imfix  //执行脚本
+</code></pre></li>
+<li>重启Sublime生效。</li>
+</ul>
+<h3 id="五、安装chrome"><a href="#五、安装chrome" class="headerlink" title="五、安装chrome"></a>五、安装chrome</h3><p><a href="http://www.google.cn/chrome/browser/desktop/index.html" target="_blank" rel="external">官网</a>下载deb包直接安装。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;一、安装nodejs&quot;&gt;&lt;a href=&quot;#一、安装nodejs&quot; class=&quot;headerlink&quot; title=&quot;一、安装nodejs&quot;&gt;&lt;/a&gt;一、安装nodejs&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;源码安装&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;1.官网下载nodejs源码，&lt;a href=&quot;http://nodejs.org&quot;&gt;nodejs官网&lt;/a&gt;或者&lt;a href=&quot;http://nodejs.cn&quot;&gt;nodejs中文网&lt;/a&gt;，下载相应版本。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="web开发" scheme="http://hyblog.site/categories/web%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="Ubuntu" scheme="http://hyblog.site/tags/Ubuntu/"/>
+    
+      <category term="web开发环境" scheme="http://hyblog.site/tags/web%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用select2插件遇到问题总结</title>
+    <link href="http://hyblog.site/2017/01/08/%E4%BD%BF%E7%94%A8select2%E6%8F%92%E4%BB%B6%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/"/>
+    <id>http://hyblog.site/2017/01/08/使用select2插件遇到问题总结/</id>
+    <published>2017-01-08T09:51:23.000Z</published>
+    <updated>2017-01-09T10:00:49.253Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>官方文档地址<a href="http://select2.github.io/" target="_blank" rel="external">链接</a>。</strong></p>
+<h4 id="报错解决"><a href="#报错解决" class="headerlink" title="报错解决"></a>报错解决</h4><a id="more"></a>
+<p><strong>错误1:</strong> 当使用本地或远程数据时可能会报<code>Uncaught Error: Option &#39;ajax&#39; is not allowed for Select2 when attached to a &lt;select&gt; element</code>类似错误。</p>
+<p><strong>解决办法:</strong> 将select标签换成div标签，显示正常。</p>
+<p><strong>错误2：</strong> 如果select2插件引用时，展示框出现样式问题。</p>
+<p><strong>解决办法:</strong> 可查看li标签样式，或设置select宽度。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;官方文档地址&lt;a href=&quot;http://select2.github.io/&quot;&gt;链接&lt;/a&gt;。&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&quot;报错解决&quot;&gt;&lt;a href=&quot;#报错解决&quot; class=&quot;headerlink&quot; title=&quot;报错解决&quot;&gt;&lt;/a&gt;报错解决&lt;/h4&gt;
+    
+    </summary>
+    
+      <category term="javaScript" scheme="http://hyblog.site/categories/javaScript/"/>
+    
+    
+      <category term="javaScript" scheme="http://hyblog.site/tags/javaScript/"/>
+    
+      <category term="select2" scheme="http://hyblog.site/tags/select2/"/>
+    
+  </entry>
+  
+  <entry>
     <title>安装ubuntu后需要做的事</title>
-    <link href="http://hyblog.site/2017/01/09/%E5%AE%89%E8%A3%85ubuntu%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B/"/>
-    <id>http://hyblog.site/2017/01/09/安装ubuntu后需要做的事/</id>
-    <published>2017-01-09T08:40:27.000Z</published>
-    <updated>2017-01-09T09:03:41.909Z</updated>
+    <link href="http://hyblog.site/2017/01/06/%E5%AE%89%E8%A3%85ubuntu%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B/"/>
+    <id>http://hyblog.site/2017/01/06/安装ubuntu后需要做的事/</id>
+    <published>2017-01-06T08:40:27.000Z</published>
+    <updated>2017-01-09T09:58:40.601Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-安装Vim"><a href="#1-安装Vim" class="headerlink" title="1.安装Vim"></a>1.安装Vim</h3><pre><code>sudo apt-get install vim
-</code></pre><h3 id="2-更新源"><a href="#2-更新源" class="headerlink" title="2.更新源"></a>2.更新源</h3><a id="more"></a>
-<blockquote>
+</code></pre><a id="more"></a>
+<h3 id="2-更新源"><a href="#2-更新源" class="headerlink" title="2.更新源"></a>2.更新源</h3><blockquote>
 <p>系统自带的有些源在国内访问不了，能访问的速度也很慢，所以我们跟换为国内源，国内有很多不错的源，比如阿里源、163源、北京交大、上海交通、清华大学等。</p>
 </blockquote>
 <ul>
 <li><p>首先备份一下系统自带源，以备以后用到</p>
-<pre><code>sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup
+<pre><code>sudo cp /etc/apt/sources.list  /etc/apt/sources.list.backup
 </code></pre></li>
 <li><p>打开并删除源设置文件内容</p>
 <pre><code>sudo gedit /etc/apt/sources.list
@@ -108,7 +218,7 @@ sudo apt-get install classicmenu-indicator
     <summary type="html">
     
       &lt;h3 id=&quot;1-安装Vim&quot;&gt;&lt;a href=&quot;#1-安装Vim&quot; class=&quot;headerlink&quot; title=&quot;1.安装Vim&quot;&gt;&lt;/a&gt;1.安装Vim&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;sudo apt-get install vim
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;2-更新源&quot;&gt;&lt;a href=&quot;#2-更新源&quot; class=&quot;headerlink&quot; title=&quot;2.更新源&quot;&gt;&lt;/a&gt;2.更新源&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;
     
     </summary>
     
@@ -120,129 +230,13 @@ sudo apt-get install classicmenu-indicator
   </entry>
   
   <entry>
-    <title>ubuntu搭建web开发环境</title>
-    <link href="http://hyblog.site/2017/01/09/ubuntu%E6%90%AD%E5%BB%BAweb%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
-    <id>http://hyblog.site/2017/01/09/ubuntu搭建web开发环境/</id>
-    <published>2017-01-09T08:40:14.000Z</published>
-    <updated>2017-01-09T09:11:44.933Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="一、安装nodejs"><a href="#一、安装nodejs" class="headerlink" title="一、安装nodejs"></a>一、安装nodejs</h3><h5 id="源码安装"><a href="#源码安装" class="headerlink" title="源码安装"></a><strong>源码安装</strong></h5><p>1.官网下载nodejs源码，<a href="http://nodejs.org" target="_blank" rel="external">nodejs官网</a>或者<a href="http://nodejs.cn" target="_blank" rel="external">nodejs中文网</a>，下载相应版本。</p>
-<a id="more"></a>
-<p>2.源码解压安装</p>
-<pre><code>apt-get update  //更新源，近期已更新可省略
-apt-get install python gcc make g++  //安装依赖包，已安装可省略
-sudo cp -r node-v6.9.2.tar.gz /opt/nodejs  //复制源码到安装目录
-sudo tar -zxvf node-v6.9.2.tar.gz  //解压源码
-cd node-v6.9.2  //进入源码
-sudo ./configure  //检测系统配置，生成makefile文件。
-sudo make  //源码编译
-sudo make install  //安装
-</code></pre><p>3.执行<code>node -v</code> 显示node版本号，安装成功。<br>4.安装tj大神写的n(nde版本管理工具)<code>sudo npm install -g n</code>,此后就可用n来切换、安装node版本了。</p>
-<p><strong>延伸阅读:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">sudo n  //切换nodejs版本</div><div class="line">sudo n latest  //安装官网最新发布版本</div><div class="line">sudo n stable  //安装官网稳定版本</div><div class="line">sudo n lts  //安装官网最新正式发布LTS版本</div><div class="line">sudo n 6.9.2  //安装指定版本</div><div class="line">sudo n rm 6.9.2 或 sudo n -6.9.2   //删除指定版本nodejs</div><div class="line">sudo n ls  //查看可用node版本</div></pre></td></tr></table></figure></p>
-<h3 id="二、通过NPM安装一系列前端管理工具"><a href="#二、通过NPM安装一系列前端管理工具" class="headerlink" title="二、通过NPM安装一系列前端管理工具"></a>二、通过NPM安装一系列前端管理工具</h3><p>1.执行<code>sudo npm install -g gulp</code> 命令安装gulp(自动化构建工具)。<br>2.执行<code>sudo npm install -g grunt-cli</code> 命令安装grunt(自动化构建工具)。<br>3.执行<code>sudo npm install -g bower</code> 命令安装bower(前端包管理工具)。</p>
-<h3 id="三、安装Git"><a href="#三、安装Git" class="headerlink" title="三、安装Git"></a>三、安装Git</h3><p>1.执行<code>sudo apt-get install git</code>命令安装git<br>2.测试git是否安装成功，执行<code>git --version</code>命令，输出版本号，安装成功。<br>3.配置git</p>
-<pre><code>git config --global user.name &quot;Your Name&quot;  //指定用户名
-git config --global user.email &quot;youremail@domain.com&quot;  //指定邮箱
-git config --list  //查看配置信息
-</code></pre><p>4.创建本地repository</p>
-<pre><code>sudo git init localGit //创建名为localGit的本地仓库
-cd localGit  //进入文件夹
-touch test.md  //创建一个文件
-git add test.md  //添加至本地仓库
-git commit -m &quot;注释&quot;  //提交至本地仓库
-</code></pre><p>5.提交远程仓库</p>
-<pre><code>git remote add origin git@github.com:&lt;github用户名&gt;/&lt;仓库名称&gt;git    //本地仓库可远程仓库链接
-git push -u origin master  //提交至远程仓库，origin(仓库名)，master(指定分支)
-</code></pre><h3 id="四、安装Sublime-Text3"><a href="#四、安装Sublime-Text3" class="headerlink" title="四、安装Sublime Text3"></a>四、安装Sublime Text3</h3><p>1.首先添加sublime text 3的仓库</p>
-<pre><code>sudo add-apt-repository ppa:webupd8team/sublime-text-3
-</code></pre><p>2.更新软件库</p>
-<pre><code>sudo apt-get update
-</code></pre><p>3.安装Sublime Text 3</p>
-<pre><code>sudo apt install sublime-text-installer
-</code></pre><p>4.安装插件管理器Packeage Control</p>
-<p>执行命令<code>subl</code>打开Sublime Text 3,按快捷键<strong>ctrl + shift + p</strong> 在弹出的窗口中查找<strong>install package control</strong>命令，单击运行.</p>
-<p>5.解决中文输入法问题</p>
-<ul>
-<li>安装fcitx<code>sudo apt-get install fcitx-table-pinyin</code></li>
-<li>配置更改为fcitx，重启电脑</li>
-<li><p>打补丁，github<a href="https://github.com/lyfeyaj/sublime-text-imfix" target="_blank" rel="external">下载地址</a></p>
-<pre><code>sudo apt-get update &amp;&amp; sudo apt-get upgrade  //更新
-git clone https://github.com/lyfeyaj/sublime-text-imfix.git  //下载
-cd sublime-text-imfix  //进入
-./sublime-imfix  //执行脚本
-</code></pre></li>
-<li>重启Sublime生效。</li>
-</ul>
-<h3 id="五、安装chrome"><a href="#五、安装chrome" class="headerlink" title="五、安装chrome"></a>五、安装chrome</h3><p><a href="http://www.google.cn/chrome/browser/desktop/index.html" target="_blank" rel="external">官网</a>下载deb包直接安装。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;一、安装nodejs&quot;&gt;&lt;a href=&quot;#一、安装nodejs&quot; class=&quot;headerlink&quot; title=&quot;一、安装nodejs&quot;&gt;&lt;/a&gt;一、安装nodejs&lt;/h3&gt;&lt;h5 id=&quot;源码安装&quot;&gt;&lt;a href=&quot;#源码安装&quot; class=&quot;headerlink&quot; title=&quot;源码安装&quot;&gt;&lt;/a&gt;&lt;strong&gt;源码安装&lt;/strong&gt;&lt;/h5&gt;&lt;p&gt;1.官网下载nodejs源码，&lt;a href=&quot;http://nodejs.org&quot;&gt;nodejs官网&lt;/a&gt;或者&lt;a href=&quot;http://nodejs.cn&quot;&gt;nodejs中文网&lt;/a&gt;，下载相应版本。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="web开发" scheme="http://hyblog.site/categories/web%E5%BC%80%E5%8F%91/"/>
-    
-    
-      <category term="Ubuntu" scheme="http://hyblog.site/tags/Ubuntu/"/>
-    
-      <category term="web开发环境" scheme="http://hyblog.site/tags/web%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>github+Hexo搭建博客平台-简记录</title>
-    <link href="http://hyblog.site/2017/01/09/github-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0-%E7%AE%80%E8%AE%B0%E5%BD%95/"/>
-    <id>http://hyblog.site/2017/01/09/github-Hexo搭建博客平台-简记录/</id>
-    <published>2017-01-09T08:02:10.000Z</published>
-    <updated>2017-01-09T08:31:25.037Z</updated>
-    
-    <content type="html"><![CDATA[<p>1.创建github帐号，邮箱进行认证。<br>2.创建username.github.io仓库，仓库名称是github特定名称。</p>
-<a id="more"></a>
-<p>3.克隆远程仓库到本地<code>git clone &quot;地址&quot;</code><br>4.本地仓库操作</p>
-<pre><code>cd username.github.io   //进入本地仓库
-mkdir blog      //新建blog文件夹
-hexo init    //初始化hexo，生成配置文件
-npm install hexo-deployer-git --save   //下载添加hexo中git依赖插件，利用hexo上传远程仓库用到。
-</code></pre><p>5.下载配置next主题<a href="http://theme-next.iissnan.com/" target="_blank" rel="external">官网详细流程</a><br>6.一个分支用来存放Hexo生成的网站原始的文件，另一个分支用来存放生成的静态网页</p>
-<pre><code>git branch hexo    //创建hexo分支
-git checkout hexo   //切换到hexo分支
-git add /blog     //添加原始文件到暂存区
-git commit -m&quot;版本注释&quot;  //从本地暂存区提交至本地仓库hexo分支
-git push origin hexo    //将本地hexo分支提交至远程仓库
-</code></pre><p>7.将github默认分支改为hexo，因为以后操作都会在hexo分支中。<br>8.将生成静态网页上传至master分支中。</p>
-<pre><code>hexo clean  //清理生成文件
-hexo g     //从新生成静态网页
-hexo s     //开启本地服务器，可用于本地测试
-hexo d     //上传至github
-</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;1.创建github帐号，邮箱进行认证。&lt;br&gt;2.创建username.github.io仓库，仓库名称是github特定名称。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="github" scheme="http://hyblog.site/categories/github/"/>
-    
-    
-      <category term="github pages" scheme="http://hyblog.site/tags/github-pages/"/>
-    
-      <category term="hexo" scheme="http://hyblog.site/tags/hexo/"/>
-    
-      <category term="git" scheme="http://hyblog.site/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
     <title>JavaScriptDOM编程艺术</title>
     <link href="http://hyblog.site/2017/01/04/JavaScriptDOM%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/"/>
     <id>http://hyblog.site/2017/01/04/JavaScriptDOM编程艺术/</id>
     <published>2017-01-04T03:01:31.000Z</published>
-    <updated>2017-01-09T08:31:25.037Z</updated>
+    <updated>2017-01-09T09:55:20.897Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="JavaScript-DOM编程艺术"><a href="#JavaScript-DOM编程艺术" class="headerlink" title="JavaScript DOM编程艺术"></a>JavaScript DOM编程艺术</h2><h5 id="JavaScript-DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。"><a href="#JavaScript-DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。" class="headerlink" title="JavaScript DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。"></a>JavaScript DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。</h5><a id="more"></a>
+    <content type="html"><![CDATA[<h5 id="JavaScript-DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。"><a href="#JavaScript-DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。" class="headerlink" title="JavaScript DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。"></a>JavaScript DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。</h5><a id="more"></a>
 <h3 id="JavaScript-ECMAscript"><a href="#JavaScript-ECMAscript" class="headerlink" title="JavaScript(ECMAscript)"></a>JavaScript(ECMAscript)</h3><h6 id="1-DHTML是“Dynamic“HTML-动态HTML-的简称。DHTML并不是一项新的技术，而是描述HTML、CSS、JavaScript技术综合的术语。DHTML背后的含义是"><a href="#1-DHTML是“Dynamic“HTML-动态HTML-的简称。DHTML并不是一项新的技术，而是描述HTML、CSS、JavaScript技术综合的术语。DHTML背后的含义是" class="headerlink" title="1.DHTML是“Dynamic“HTML(动态HTML)的简称。DHTML并不是一项新的技术，而是描述HTML、CSS、JavaScript技术综合的术语。DHTML背后的含义是:"></a>1.DHTML是“Dynamic“HTML(动态HTML)的简称。DHTML并不是一项新的技术，而是描述HTML、CSS、JavaScript技术综合的术语。DHTML背后的含义是:</h6><ul>
 <li>利用HTML把网页标记为各种元素;</li>
 <li>利用CSS设置元素样式和他们的显示位置;</li>
@@ -281,7 +275,10 @@ hexo d     //上传至github
 <h6 id="7-window对象的open-方法"><a href="#7-window对象的open-方法" class="headerlink" title="7.window对象的open()方法"></a>7.window对象的open()方法</h6><p>JavaScript使用window对象的open()方法来创建新的浏览器窗口这个方法有三个参数<code>window.open(url,name,features)</code>,这三个参数都是可选的，第一个参数为新窗口url地址，第二个参数为新窗口名字，第三个参数是一个以逗号分割的字符串，其内容是新窗口的各种属性。示例<code>window.pen(url,name,&quot;width=300,height=500&quot;)</code></p>
 <h6 id="8-”JavaScript-“-伪协议"><a href="#8-”JavaScript-“-伪协议" class="headerlink" title="8.”JavaScript:“ 伪协议"></a>8.”JavaScript:“ 伪协议</h6><p>”真“协议用来在因特网上计算机之间传输数据包，如HTTP协议<code>https://</code>、FTP协议<code>ftp://</code>等，伪协议则是一种非标准化协议。”JavaScript:“伪协议让我们通过一个链接调用JavaScript函数。<code>onclick=&quot;javascript:函数()&quot;</code><br>在HTML文档通过伪协议调用JavaScript代码做法，在较老浏览器或在浏览器禁用JavaScript的情况下会造成链接失败或什么都不做。</p>
 <h6 id="9-搜索机器人-searchbot-网络蜘蛛-web-Spider"><a href="#9-搜索机器人-searchbot-网络蜘蛛-web-Spider" class="headerlink" title="9.搜索机器人(searchbot)网络蜘蛛(web Spider)"></a>9.搜索机器人(searchbot)网络蜘蛛(web Spider)</h6><p>搜索机器人是一个自动化程序，他们浏览web的目的是把各种网页添加到搜索引擎的数据库里，各大搜索引擎都有类似的程序，目前只有少数机器人能够理解JavaScript代码，所以你的JavaScript代码不能平稳退化他们在搜索引擎上的排名就可能大受损害。</p>
-<h6 id="10-共享onload"><a href="#10-共享onload" class="headerlink" title="10.共享onload"></a>10.共享onload</h6><p>假设两个函数都在页面加载时执行，如果逐一绑定到onload事件上它们当中只有最后一个才被执行<br><code>window.onload=函数1();window.onload=函数2();</code><br>解决方法：1.创建匿名函数来包容要被执行的函数，然后把匿名函数绑定到onload事件上<br><code>window.onload=function(){函数1();函数2();}</code><br>2.弹性最佳解决方案，创建通用函数</p>
+<h6 id="10-共享onload"><a href="#10-共享onload" class="headerlink" title="10.共享onload"></a>10.共享onload</h6><p>假设两个函数都在页面加载时执行，如果逐一绑定到onload事件上它们当中只有最后一个才被执行<br><code>window.onload=函数1();window.onload=函数2();</code></p>
+<p><strong>解决方法</strong></p>
+<p>1.创建匿名函数来包容要被执行的函数，然后把匿名函数绑定到onload事件上<br><code>window.onload=function(){函数1();函数2();}</code></p>
+<p>2.弹性最佳解决方案，创建通用函数</p>
 <ul>
 <li>把现有的onload事件处理函数的值存入变量oldonload;</li>
 <li>如果事件上没有绑定任何函数，把新的函数添加给事件;</li>
@@ -369,7 +366,7 @@ function inserAfter (newElement,targetElement){
     
     <summary type="html">
     
-      &lt;h2 id=&quot;JavaScript-DOM编程艺术&quot;&gt;&lt;a href=&quot;#JavaScript-DOM编程艺术&quot; class=&quot;headerlink&quot; title=&quot;JavaScript DOM编程艺术&quot;&gt;&lt;/a&gt;JavaScript DOM编程艺术&lt;/h2&gt;&lt;h5 id=&quot;JavaScript-DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。&quot;&gt;&lt;a href=&quot;#JavaScript-DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。&quot; class=&quot;headerlink&quot; title=&quot;JavaScript DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。&quot;&gt;&lt;/a&gt;JavaScript DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。&lt;/h5&gt;
+      &lt;h5 id=&quot;JavaScript-DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。&quot;&gt;&lt;a href=&quot;#JavaScript-DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。&quot; class=&quot;headerlink&quot; title=&quot;JavaScript DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。&quot;&gt;&lt;/a&gt;JavaScript DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。&lt;/h5&gt;
     
     </summary>
     
@@ -377,6 +374,54 @@ function inserAfter (newElement,targetElement){
     
     
       <category term="javaScript" scheme="http://hyblog.site/tags/javaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>github+Hexo搭建博客平台-简记录</title>
+    <link href="http://hyblog.site/2017/01/03/github-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0-%E7%AE%80%E8%AE%B0%E5%BD%95/"/>
+    <id>http://hyblog.site/2017/01/03/github-Hexo搭建博客平台-简记录/</id>
+    <published>2017-01-03T08:02:10.000Z</published>
+    <updated>2017-01-09T09:58:30.565Z</updated>
+    
+    <content type="html"><![CDATA[<p>1.创建github帐号，邮箱进行认证。</p>
+<p>2.创建username.github.io仓库，仓库名称是github特定名称。</p>
+<a id="more"></a>
+<p>3.克隆远程仓库到本地<code>git clone &quot;地址&quot;</code></p>
+<p>4.本地仓库操作</p>
+<pre><code>cd username.github.io   //进入本地仓库
+mkdir blog      //新建blog文件夹
+hexo init    //初始化hexo，生成配置文件
+npm install hexo-deployer-git --save   //下载添加hexo中git依赖插件，利用hexo上传远程仓库用到。
+</code></pre><p>5.下载配置next主题<a href="http://theme-next.iissnan.com/" target="_blank" rel="external">官网详细流程</a></p>
+<p>6.一个分支用来存放Hexo生成的网站原始的文件，另一个分支用来存放生成的静态网页</p>
+<pre><code>git branch hexo    //创建hexo分支
+git checkout hexo   //切换到hexo分支
+git add /blog     //添加原始文件到暂存区
+git commit -m&quot;版本注释&quot;  //从本地暂存区提交至本地仓库hexo分支
+git push origin hexo    //将本地hexo分支提交至远程仓库
+</code></pre><p>7.将github默认分支改为hexo，因为以后操作都会在hexo分支中。<br>8.将生成静态网页上传至master分支中。</p>
+<pre><code>hexo clean  //清理生成文件
+hexo g     //从新生成静态网页
+hexo s     //开启本地服务器，可用于本地测试
+hexo d     //上传至github
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;1.创建github帐号，邮箱进行认证。&lt;/p&gt;
+&lt;p&gt;2.创建username.github.io仓库，仓库名称是github特定名称。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="github" scheme="http://hyblog.site/categories/github/"/>
+    
+    
+      <category term="github pages" scheme="http://hyblog.site/tags/github-pages/"/>
+    
+      <category term="hexo" scheme="http://hyblog.site/tags/hexo/"/>
+    
+      <category term="git" scheme="http://hyblog.site/tags/git/"/>
     
   </entry>
   
