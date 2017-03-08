@@ -11,6 +11,8 @@ categories: web开发
 
 1.官网下载nodejs源码，[nodejs官网](http://nodejs.org)或者[nodejs中文网](http://nodejs.cn)，下载相应版本。
 
+<!--more-->
+
 2.源码解压安装
 
     apt-get update  //更新源，近期已更新可省略

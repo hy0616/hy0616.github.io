@@ -11,6 +11,8 @@ categories: Ubuntu
 
 + `kill -9 端口号`  杀死进程
 
+<!--more-->
+
 ### 2.通过关键字查找包含内容文件
 
 + `find /xxx -name "*" | xargs grep "content"`
