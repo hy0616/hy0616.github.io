@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hyblog.site/"/>
-  <updated>2017-03-08T07:15:47.026Z</updated>
+  <updated>2017-03-08T07:31:37.018Z</updated>
   <id>http://hyblog.site/</id>
   
   <author>
@@ -20,9 +20,10 @@
     <link href="http://hyblog.site/2017/03/08/%E7%A3%81%E7%9B%98%E5%82%A8%E5%AD%98%E5%88%86%E5%8C%BA%E5%BD%A2%E5%BC%8F%E8%BD%AC%E6%8D%A2/"/>
     <id>http://hyblog.site/2017/03/08/磁盘储存分区形式转换/</id>
     <published>2017-03-08T07:16:30.000Z</published>
-    <updated>2017-03-08T07:15:47.026Z</updated>
+    <updated>2017-03-08T07:31:37.018Z</updated>
     
     <content type="html"><![CDATA[<h3 id="一、磁盘分区形式简介"><a href="#一、磁盘分区形式简介" class="headerlink" title="一、磁盘分区形式简介"></a>一、磁盘分区形式简介</h3><p>在使用新磁盘之前，你必须对其进行分区。MBR（Master Boot Record）和GPT（GUID Partition Table）是在磁盘上存储分区信息的两种不同方式。这些分区信息包含了分区从哪里开始的信息，这样操作系统才知道哪个扇区是属于哪个分区的，以及哪个分区是可以启动的。在磁盘上创建分区时，你必须在MBR和GPT之间做出选择。</p>
+<a id="more"></a>
 <ul>
 <li><p>MBR分区表，对应的是传统模式和UEFI的Legacy模式，2.1T以下的硬盘用，可以引导32bit和64bit的系统</p>
 <ul>
@@ -74,7 +75,7 @@
     
     <summary type="html">
     
-      &lt;h3 id=&quot;一、磁盘分区形式简介&quot;&gt;&lt;a href=&quot;#一、磁盘分区形式简介&quot; class=&quot;headerlink&quot; title=&quot;一、磁盘分区形式简介&quot;&gt;&lt;/a&gt;一、磁盘分区形式简介&lt;/h3&gt;&lt;p&gt;在使用新磁盘之前，你必须对其进行分区。MBR（Master Boot Rec
+      &lt;h3 id=&quot;一、磁盘分区形式简介&quot;&gt;&lt;a href=&quot;#一、磁盘分区形式简介&quot; class=&quot;headerlink&quot; title=&quot;一、磁盘分区形式简介&quot;&gt;&lt;/a&gt;一、磁盘分区形式简介&lt;/h3&gt;&lt;p&gt;在使用新磁盘之前，你必须对其进行分区。MBR（Master Boot Record）和GPT（GUID Partition Table）是在磁盘上存储分区信息的两种不同方式。这些分区信息包含了分区从哪里开始的信息，这样操作系统才知道哪个扇区是属于哪个分区的，以及哪个分区是可以启动的。在磁盘上创建分区时，你必须在MBR和GPT之间做出选择。&lt;/p&gt;
     
     </summary>
     
@@ -90,7 +91,7 @@
     <link href="http://hyblog.site/2017/03/01/linux%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/"/>
     <id>http://hyblog.site/2017/03/01/linux命令记录/</id>
     <published>2017-03-01T08:40:14.000Z</published>
-    <updated>2017-03-08T07:17:08.878Z</updated>
+    <updated>2017-03-08T07:31:09.778Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-查看端口占用情况并杀死进程"><a href="#1-查看端口占用情况并杀死进程" class="headerlink" title="1.查看端口占用情况并杀死进程"></a>1.查看端口占用情况并杀死进程</h3><ul>
 <li><p><code>ps -ef | grep 8080</code> 查询端口占用</p>
@@ -98,6 +99,7 @@
 <li><p><code>kill -9 端口号</code>  杀死进程</p>
 </li>
 </ul>
+<a id="more"></a>
 <h3 id="2-通过关键字查找包含内容文件"><a href="#2-通过关键字查找包含内容文件" class="headerlink" title="2.通过关键字查找包含内容文件"></a>2.通过关键字查找包含内容文件</h3><ul>
 <li><code>find /xxx -name &quot;*&quot; | xargs grep &quot;content&quot;</code></li>
 </ul>
@@ -131,7 +133,11 @@
     <summary type="html">
     
       &lt;h3 id=&quot;1-查看端口占用情况并杀死进程&quot;&gt;&lt;a href=&quot;#1-查看端口占用情况并杀死进程&quot; class=&quot;headerlink&quot; title=&quot;1.查看端口占用情况并杀死进程&quot;&gt;&lt;/a&gt;1.查看端口占用情况并杀死进程&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;ps 
+&lt;li&gt;&lt;p&gt;&lt;code&gt;ps -ef | grep 8080&lt;/code&gt; 查询端口占用&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;kill -9 端口号&lt;/code&gt;  杀死进程&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
     
     </summary>
     
@@ -147,10 +153,11 @@
     <link href="http://hyblog.site/2017/01/09/ubuntu%E6%90%AD%E5%BB%BAweb%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
     <id>http://hyblog.site/2017/01/09/ubuntu搭建web开发环境/</id>
     <published>2017-01-09T08:40:14.000Z</published>
-    <updated>2017-03-08T07:17:16.966Z</updated>
+    <updated>2017-03-08T07:31:19.686Z</updated>
     
     <content type="html"><![CDATA[<h3 id="一、安装nodejs"><a href="#一、安装nodejs" class="headerlink" title="一、安装nodejs"></a>一、安装nodejs</h3><p><strong>源码安装</strong></p>
 <p>1.官网下载nodejs源码，<a href="http://nodejs.org" target="_blank" rel="external">nodejs官网</a>或者<a href="http://nodejs.cn" target="_blank" rel="external">nodejs中文网</a>，下载相应版本。</p>
+<a id="more"></a>
 <p>2.源码解压安装</p>
 <pre><code>apt-get update  //更新源，近期已更新可省略
 apt-get install python gcc make g++  //安装依赖包，已安装可省略
@@ -207,7 +214,7 @@ cd sublime-text-imfix  //进入
     <summary type="html">
     
       &lt;h3 id=&quot;一、安装nodejs&quot;&gt;&lt;a href=&quot;#一、安装nodejs&quot; class=&quot;headerlink&quot; title=&quot;一、安装nodejs&quot;&gt;&lt;/a&gt;一、安装nodejs&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;源码安装&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;1.官网下载nod
+&lt;p&gt;1.官网下载nodejs源码，&lt;a href=&quot;http://nodejs.org&quot;&gt;nodejs官网&lt;/a&gt;或者&lt;a href=&quot;http://nodejs.cn&quot;&gt;nodejs中文网&lt;/a&gt;，下载相应版本。&lt;/p&gt;
     
     </summary>
     
@@ -256,10 +263,11 @@ cd sublime-text-imfix  //进入
     <link href="http://hyblog.site/2017/01/06/%E5%AE%89%E8%A3%85ubuntu%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B/"/>
     <id>http://hyblog.site/2017/01/06/安装ubuntu后需要做的事/</id>
     <published>2017-01-06T08:40:27.000Z</published>
-    <updated>2017-03-08T07:17:40.522Z</updated>
+    <updated>2017-03-08T07:31:29.670Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-安装Vim"><a href="#1-安装Vim" class="headerlink" title="1.安装Vim"></a>1.安装Vim</h3><pre><code>sudo apt-get install vim
-</code></pre><h3 id="2-更新源"><a href="#2-更新源" class="headerlink" title="2.更新源"></a>2.更新源</h3><blockquote>
+</code></pre><a id="more"></a>
+<h3 id="2-更新源"><a href="#2-更新源" class="headerlink" title="2.更新源"></a>2.更新源</h3><blockquote>
 <p>系统自带的有些源在国内访问不了，能访问的速度也很慢，所以我们跟换为国内源，国内有很多不错的源，比如阿里源、163源、北京交大、上海交通、清华大学等。</p>
 </blockquote>
 <ul>
@@ -368,7 +376,7 @@ set-sink-port 1 analog-output-headphones  //本机index顺序为1
     <summary type="html">
     
       &lt;h3 id=&quot;1-安装Vim&quot;&gt;&lt;a href=&quot;#1-安装Vim&quot; class=&quot;headerlink&quot; title=&quot;1.安装Vim&quot;&gt;&lt;/a&gt;1.安装Vim&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;sudo apt-get install vim
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 
+&lt;/code&gt;&lt;/pre&gt;
     
     </summary>
     
