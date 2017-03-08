@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hyblog.site/"/>
-  <updated>2017-01-09T10:03:20.097Z</updated>
+  <updated>2017-03-08T07:15:47.026Z</updated>
   <id>http://hyblog.site/</id>
   
   <author>
@@ -16,15 +16,141 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>磁盘分区形式转换</title>
+    <link href="http://hyblog.site/2017/03/08/%E7%A3%81%E7%9B%98%E5%82%A8%E5%AD%98%E5%88%86%E5%8C%BA%E5%BD%A2%E5%BC%8F%E8%BD%AC%E6%8D%A2/"/>
+    <id>http://hyblog.site/2017/03/08/磁盘储存分区形式转换/</id>
+    <published>2017-03-08T07:16:30.000Z</published>
+    <updated>2017-03-08T07:15:47.026Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="一、磁盘分区形式简介"><a href="#一、磁盘分区形式简介" class="headerlink" title="一、磁盘分区形式简介"></a>一、磁盘分区形式简介</h3><p>在使用新磁盘之前，你必须对其进行分区。MBR（Master Boot Record）和GPT（GUID Partition Table）是在磁盘上存储分区信息的两种不同方式。这些分区信息包含了分区从哪里开始的信息，这样操作系统才知道哪个扇区是属于哪个分区的，以及哪个分区是可以启动的。在磁盘上创建分区时，你必须在MBR和GPT之间做出选择。</p>
+<ul>
+<li><p>MBR分区表，对应的是传统模式和UEFI的Legacy模式，2.1T以下的硬盘用，可以引导32bit和64bit的系统</p>
+<ul>
+<li>MBR本身不是某一个分区，而是一块硬盘分配各个分区的一种模式。也可以认为，一块MBR磁盘上的所有分区都属于MBR分区。MBR磁盘可以被大多数新的老的操作系统识别，是传统上常用的一种模式，但一块硬盘上的主分区不能超过4个，最大容量不能超过2.1TB。</li>
+</ul>
+</li>
+<li><p>GPT分区表，对应的是UEFI模式，用于2.1T及其以上的硬盘。</p>
+<ul>
+<li><p>GPT本身不是某一个分区，而是一块硬盘分配各个分区的一种模式。也可以认为，一块GPT磁盘上的所有分区都属于GPT分区。GPT磁盘存储数据更稳定，是一种先进的模式，主分区数量没有限制，容量也没有限制（最大可达18000TB）。只有在支持UEFI的BIOS的主板上，才能在GPT磁盘上安装64位操作系统。</p>
+</li>
+<li><p>任何一块GPT磁盘上都有一个MSR分区，大小随硬盘总容量而定，一般不超过128MB。这个分区不能被用户直接使用，它的用途是防止将一块GPT磁盘接到老系统（如XP）中，被当作未格式化的空硬盘而继续操作（例如重新格式化），导致数据丢失。GPT磁盘上有了这个分区，当把它接入XP等老系统中，会提示无法识别的磁盘，也无法进一步操作。</p>
+</li>
+<li><p>GPT磁盘只有做系统盘的时候才会有EFI分区，这个分区是操作系统的引导分区，与在MBR磁盘上安装生成的那个100MB隐藏分区用途相同。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="二、GPT磁盘转换MBR磁盘"><a href="#二、GPT磁盘转换MBR磁盘" class="headerlink" title="二、GPT磁盘转换MBR磁盘"></a>二、GPT磁盘转换MBR磁盘</h3><p>有时候用原版系统镜像安装windows系统时，会提示“windows无法安装到这个磁盘。选中的磁盘采用GPT分区形式”，导致安装失败。</p>
+<p><strong>操作步骤</strong></p>
+<ol>
+<li>在系统提示无法安装的那一步，按住“shift+f10”，呼出“cmd”命令符。</li>
+<li>输入：diskpart，回车，进入diskpart。</li>
+<li>输入：list disk，回车，显示磁盘信息。</li>
+<li>输入：select disk 0，回车，选择第0个磁盘（电脑的硬盘编号是从0开始的）。</li>
+<li>输入：clean，回车，删除磁盘分区&amp;格式化。</li>
+<li>输入：convert mbr，回车，将当前磁盘分区设置为Mbr形式。</li>
+<li>输入：create partition primary size = xxx，回车，创建主分区大小（MB）。</li>
+<li>输入：format fs=ntfs quick，回车，格式化磁盘为ntfs。</li>
+<li>输入：exit，回车，退出diskpart，输入：exit，回车，退出cmd。</li>
+</ol>
+<h3 id="三、MBR磁盘转换GPT磁盘"><a href="#三、MBR磁盘转换GPT磁盘" class="headerlink" title="三、MBR磁盘转换GPT磁盘"></a>三、MBR磁盘转换GPT磁盘</h3><p>有时候用原版系统镜像安装windows系统时，会提示“windows无法安装到这个磁盘。选中的磁盘采用MBR分区形式”，导致安装失败。</p>
+<p><strong>操作步骤</strong></p>
+<ol>
+<li>在系统提示无法安装的那一步，按住“shift+f10”，呼出“cmd”命令符。</li>
+<li>输入：diskpart，回车，进入diskpart。</li>
+<li>输入：list disk，回车，显示磁盘信息。</li>
+<li>输入：select disk 0，回车，选择第0个磁盘（电脑的硬盘编号是从0开始的）。</li>
+<li>输入：clean，回车，删除磁盘分区&amp;格式化。</li>
+<li>输入：convert gpt，回车，将当前磁盘分区设置为GPT形式。</li>
+<li>输入：create partition efi size=100，回车，创建EFI分区，大小为100。</li>
+<li>输入：create partition msr size=128，回车，创建MSR分区，微软默认大小是128M。</li>
+<li>输入：create partition primary size=×××，创建主分区，这里要注意数字按M计算。</li>
+<li>输入：list partition，回车，列出磁盘上的分区。</li>
+<li>输入：exit，回车，退出diskpart，输入：exit，回车，退出cmd。</li>
+</ol>
+<p>温馨提示：</p>
+<p>diskpart命令的详细内容，可以利用键入help命令查看。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;一、磁盘分区形式简介&quot;&gt;&lt;a href=&quot;#一、磁盘分区形式简介&quot; class=&quot;headerlink&quot; title=&quot;一、磁盘分区形式简介&quot;&gt;&lt;/a&gt;一、磁盘分区形式简介&lt;/h3&gt;&lt;p&gt;在使用新磁盘之前，你必须对其进行分区。MBR（Master Boot Rec
+    
+    </summary>
+    
+      <category term="系统安装" scheme="http://hyblog.site/categories/%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/"/>
+    
+    
+      <category term="系统安装、磁盘管理" scheme="http://hyblog.site/tags/%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E3%80%81%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>linux命令记录</title>
+    <link href="http://hyblog.site/2017/03/01/linux%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/"/>
+    <id>http://hyblog.site/2017/03/01/linux命令记录/</id>
+    <published>2017-03-01T08:40:14.000Z</published>
+    <updated>2017-03-08T07:17:08.878Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-查看端口占用情况并杀死进程"><a href="#1-查看端口占用情况并杀死进程" class="headerlink" title="1.查看端口占用情况并杀死进程"></a>1.查看端口占用情况并杀死进程</h3><ul>
+<li><p><code>ps -ef | grep 8080</code> 查询端口占用</p>
+</li>
+<li><p><code>kill -9 端口号</code>  杀死进程</p>
+</li>
+</ul>
+<h3 id="2-通过关键字查找包含内容文件"><a href="#2-通过关键字查找包含内容文件" class="headerlink" title="2.通过关键字查找包含内容文件"></a>2.通过关键字查找包含内容文件</h3><ul>
+<li><code>find /xxx -name &quot;*&quot; | xargs grep &quot;content&quot;</code></li>
+</ul>
+<p>注： /xxx表示路径，”*”表示在含有某关键字名字下的文件中查找。</p>
+<p>例： 当前目录下搜索含有Temporary_random内容的所有文件</p>
+<p><code>find ./ -name &quot;*&quot; | xargs grep &quot;Temporary_random&quot;</code></p>
+<h3 id="3-安装deb命令"><a href="#3-安装deb命令" class="headerlink" title="3.安装deb命令"></a>3.安装deb命令</h3><blockquote>
+<p>deb是Debian Linux的安装格式，跟Red Hat的rpm非常相似，最基本的安装命令是：dpkg -i xxx.deb</p>
+<p>dpkg 是Debian Package的简写，是为Debian 专门开发的套件管理系统，方便软件的安装、更新及移除。所有源自Debian的Linux发行版都使用dpkg，例如Ubuntu、Knoppix 等。</p>
+</blockquote>
+<p>dpkg命令常用格式如下：</p>
+<ul>
+<li><p><code>sudo dpkg -I xxx.deb</code> 查看软件包的详细信息，包括软件名称、版本以及大小等（其中-I等价于–info）</p>
+</li>
+<li><p><code>sudo dpkg -c xxx.deb</code> 查看软件包中包含的文件结构（其中-c等价于–contents）</p>
+</li>
+<li><p><code>sudo dpkg -i xxx.deb</code> 安装软件包（其中-i等价于–install）</p>
+</li>
+<li><p><code>sudo dpkg -l xxx.deb</code> 查看软件包的信息（软件名称可通过dpkg -I命令查看，其中-l等价于–list）</p>
+</li>
+<li><p><code>sudo dpkg -L xxx.deb</code> 查看软件包安装的所有文件（软件名称可通过dpkg -I命令查看，其中-L等价于–listfiles）</p>
+</li>
+<li><p><code>sudo dpkg -s xxx.deb</code> 查看软件包的详细信息（软件名称可通过dpkg -I命令查看，其中-s等价于–status）</p>
+</li>
+<li><p><code>sudo dpkg -r xxx.deb</code> 卸载软件包（软件名称可通过dpkg -I命令查看，其中-r等价于–remove）</p>
+</li>
+</ul>
+<p>注： dpkg命令无法自动解决依赖关系。如果安装的deb包存在依赖包，则应避免使用此命令，或者按照依赖关系顺序安装依赖包。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-查看端口占用情况并杀死进程&quot;&gt;&lt;a href=&quot;#1-查看端口占用情况并杀死进程&quot; class=&quot;headerlink&quot; title=&quot;1.查看端口占用情况并杀死进程&quot;&gt;&lt;/a&gt;1.查看端口占用情况并杀死进程&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;ps 
+    
+    </summary>
+    
+      <category term="Ubuntu" scheme="http://hyblog.site/categories/Ubuntu/"/>
+    
+    
+      <category term="Ubuntu" scheme="http://hyblog.site/tags/Ubuntu/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ubuntu搭建web开发环境</title>
     <link href="http://hyblog.site/2017/01/09/ubuntu%E6%90%AD%E5%BB%BAweb%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
     <id>http://hyblog.site/2017/01/09/ubuntu搭建web开发环境/</id>
     <published>2017-01-09T08:40:14.000Z</published>
-    <updated>2017-01-09T10:03:20.097Z</updated>
+    <updated>2017-03-08T07:17:16.966Z</updated>
     
     <content type="html"><![CDATA[<h3 id="一、安装nodejs"><a href="#一、安装nodejs" class="headerlink" title="一、安装nodejs"></a>一、安装nodejs</h3><p><strong>源码安装</strong></p>
 <p>1.官网下载nodejs源码，<a href="http://nodejs.org" target="_blank" rel="external">nodejs官网</a>或者<a href="http://nodejs.cn" target="_blank" rel="external">nodejs中文网</a>，下载相应版本。</p>
-<a id="more"></a>
 <p>2.源码解压安装</p>
 <pre><code>apt-get update  //更新源，近期已更新可省略
 apt-get install python gcc make g++  //安装依赖包，已安装可省略
@@ -81,7 +207,7 @@ cd sublime-text-imfix  //进入
     <summary type="html">
     
       &lt;h3 id=&quot;一、安装nodejs&quot;&gt;&lt;a href=&quot;#一、安装nodejs&quot; class=&quot;headerlink&quot; title=&quot;一、安装nodejs&quot;&gt;&lt;/a&gt;一、安装nodejs&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;源码安装&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;1.官网下载nodejs源码，&lt;a href=&quot;http://nodejs.org&quot;&gt;nodejs官网&lt;/a&gt;或者&lt;a href=&quot;http://nodejs.cn&quot;&gt;nodejs中文网&lt;/a&gt;，下载相应版本。&lt;/p&gt;
+&lt;p&gt;1.官网下载nod
     
     </summary>
     
@@ -90,7 +216,7 @@ cd sublime-text-imfix  //进入
     
       <category term="Ubuntu" scheme="http://hyblog.site/tags/Ubuntu/"/>
     
-      <category term="web开发环境" scheme="http://hyblog.site/tags/web%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
+      <category term="web开发" scheme="http://hyblog.site/tags/web%E5%BC%80%E5%8F%91/"/>
     
   </entry>
   
@@ -99,7 +225,7 @@ cd sublime-text-imfix  //进入
     <link href="http://hyblog.site/2017/01/08/%E4%BD%BF%E7%94%A8select2%E6%8F%92%E4%BB%B6%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/"/>
     <id>http://hyblog.site/2017/01/08/使用select2插件遇到问题总结/</id>
     <published>2017-01-08T09:51:23.000Z</published>
-    <updated>2017-01-09T10:00:49.253Z</updated>
+    <updated>2017-03-08T07:18:07.230Z</updated>
     
     <content type="html"><![CDATA[<p><strong>官方文档地址<a href="http://select2.github.io/" target="_blank" rel="external">链接</a>。</strong></p>
 <h4 id="报错解决"><a href="#报错解决" class="headerlink" title="报错解决"></a>报错解决</h4><a id="more"></a>
@@ -121,7 +247,7 @@ cd sublime-text-imfix  //进入
     
       <category term="javaScript" scheme="http://hyblog.site/tags/javaScript/"/>
     
-      <category term="select2" scheme="http://hyblog.site/tags/select2/"/>
+      <category term="select2、web开发" scheme="http://hyblog.site/tags/select2%E3%80%81web%E5%BC%80%E5%8F%91/"/>
     
   </entry>
   
@@ -130,11 +256,10 @@ cd sublime-text-imfix  //进入
     <link href="http://hyblog.site/2017/01/06/%E5%AE%89%E8%A3%85ubuntu%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B/"/>
     <id>http://hyblog.site/2017/01/06/安装ubuntu后需要做的事/</id>
     <published>2017-01-06T08:40:27.000Z</published>
-    <updated>2017-01-09T09:58:40.601Z</updated>
+    <updated>2017-03-08T07:17:40.522Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-安装Vim"><a href="#1-安装Vim" class="headerlink" title="1.安装Vim"></a>1.安装Vim</h3><pre><code>sudo apt-get install vim
-</code></pre><a id="more"></a>
-<h3 id="2-更新源"><a href="#2-更新源" class="headerlink" title="2.更新源"></a>2.更新源</h3><blockquote>
+</code></pre><h3 id="2-更新源"><a href="#2-更新源" class="headerlink" title="2.更新源"></a>2.更新源</h3><blockquote>
 <p>系统自带的有些源在国内访问不了，能访问的速度也很慢，所以我们跟换为国内源，国内有很多不错的源，比如阿里源、163源、北京交大、上海交通、清华大学等。</p>
 </blockquote>
 <ul>
@@ -149,6 +274,10 @@ cd sublime-text-imfix  //进入
 apt-get upgrade                 //升级已安装的所有软件包
 </code></pre></li>
 </ul>
+<p><strong>阿里源：</strong></p>
+<blockquote>
+<p>deb-src <a href="http://archive.ubuntu.com/ubuntu" target="_blank" rel="external">http://archive.ubuntu.com/ubuntu</a> xenial main restricted #Added by software-properties<br>deb <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial main restricted<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial main restricted multiverse universe #Added by software-properties<br>deb <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial-updates main restricted<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial-updates main restricted multiverse universe #Added by software-properties<br>deb <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial universe<br>deb <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial-updates universe<br>deb <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial multiverse<br>deb <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial-updates multiverse<br>deb <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial-backports main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial-backports main restricted universe multiverse #Added by software-properties<br>deb <a href="http://archive.canonical.com/ubuntu" target="_blank" rel="external">http://archive.canonical.com/ubuntu</a> xenial partner<br>deb-src <a href="http://archive.canonical.com/ubuntu" target="_blank" rel="external">http://archive.canonical.com/ubuntu</a> xenial partner<br>deb <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial-security main restricted<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial-security main restricted multiverse universe #Added by software-properties<br>deb <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial-security universe<br>deb <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial-security multiverse</p>
+</blockquote>
 <h3 id="3-双系统时间修正"><a href="#3-双系统时间修正" class="headerlink" title="3.双系统时间修正"></a>3.双系统时间修正</h3><blockquote>
 <p>Ubuntu和Windows默认的时间管理方式不同，所以双系统发生时间错乱是正常的。Ubuntu默认时间是把BIOS时间当成GMT+0时间，也就是世界标准时，而我国在东八区(GMT+8)，所以如果你的Ubuntu位置是中国的话你系统显示的时间就是BIOS时间+8小时。假如现在是早上8点，那么你Ubuntu会显示8点，这时BIOS中的时间是0点。</p>
 </blockquote>
@@ -168,6 +297,13 @@ timedatectl set-ntp 0
 <li><p>执行<code>sudo update-grub</code>，更新grub，重启电脑生效。</p>
 </li>
 </ul>
+<p><strong>延伸阅读</strong></p>
+<ul>
+<li><p>在win系统下安装ubuntu系统后默认启动的是ubuntu系统，说到启动就不得不说GRUB，Linux下大名鼎鼎的启动管理工具，当然现在已经是GRUB2了，GRUB2和GRUB最重要的区别就是，GRUB存放系统启动信息的文为/boot/grub/menu.lst，而GRUB2则为/boot/grub /grub.cfg。</p>
+</li>
+<li><p><del>/boot/grub/grub.cfg</del> 这个文件是根据/etc/grub.d的模板和/etc/default/grub的设置自动生成的，不要修改这个文件。</p>
+</li>
+</ul>
 <h3 id="5-安装经典菜单指示器"><a href="#5-安装经典菜单指示器" class="headerlink" title="5.安装经典菜单指示器"></a>5.安装经典菜单指示器</h3><pre><code>sudo apt-get update
 sudo apt-get install classicmenu-indicator
 </code></pre><p><strong>延伸阅读</strong><br>通过<code>sudo add-apt-repository ppa: xxx/ppa</code>命令在source.list里添加 ppa 源了（同时完成导入key），++add-apt-repository++是由 <strong>Python-software-properties</strong>这个工具包提供的,所以要先安装python-software-properties 才能使用 add-apt-repository,<br>安装命令：<code>apt-get install python-software-properties</code>。</p>
@@ -177,7 +313,7 @@ sudo apt-get install classicmenu-indicator
 <p>3.查看是否安装ubuntu中文语言包，选择System-&gt;Administration-&gt;Language Support(系统设置&gt;全部设置&gt;语言支持)，系统会自动加载所需语言文件，选择安装Chinese(Simplified)，安装升级完成后将汉语(中国)移至最上边，点击应用到整个系统，重启生效。</p>
 <p><strong>延伸阅读：安装Adobe Flash player插件</strong></p>
 <ul>
-<li>官网下载<a href="https://get.adobe.com/flashplayer" target="_blank" rel="external">下载地址</a>，这里选择tar.gz for liunx版本下载。</li>
+<li><a href="https://get.adobe.com/flashplayer" target="_blank" rel="external">官网</a>下载，这里选择tar.gz for liunx版本下载。</li>
 <li>执行<code>sudo tar -zxvf flash_player_npapi_linux.x86_64.tar.gz</code>进行解压。</li>
 <li>执行<code>cd flash_player_npapi_linux.x86_64</code>命令进入解压后文件夹。</li>
 <li>执行<code>sudo cp libflashplayer.so /usr/lib/firefox/browser/plugins</code>,拷贝到firefox插件目录下。</li>
@@ -191,18 +327,7 @@ sudo apt-get install classicmenu-indicator
 <li>系统设置–文本输入–键盘设置–自定义快捷键–点击+号增加自定义快捷键。</li>
 <li>填写名称和命令(名称随便填写，命令填写terminator)。</li>
 </ul>
-<h3 id="8-win-ubuntu双系统改变启动顺序"><a href="#8-win-ubuntu双系统改变启动顺序" class="headerlink" title="8.win+ubuntu双系统改变启动顺序"></a>8.win+ubuntu双系统改变启动顺序</h3><ul>
-<li>执行<code>sudo gedit /etc/default/grub</code>。  //编辑配置文件</li>
-<li>修改GRUB_DEFAULT。  //GRUB_DEFAULT代表的就是启动项的顺序，从0开始。</li>
-</ul>
-<p><strong>延伸阅读</strong></p>
-<ul>
-<li><p>在win系统下安装ubuntu系统后默认启动的是ubuntu系统，说到启动就不得不说GRUB，Linux下大名鼎鼎的启动管理工具，当然现在已经是GRUB2了，GRUB2和GRUB最重要的区别就是，GRUB存放系统启动信息的文为/boot/grub/menu.lst，而GRUB2则为/boot/grub /grub.cfg。</p>
-</li>
-<li><p><del>/boot/grub/grub.cfg</del> 这个文件是根据/etc/grub.d的模板和/etc/default/grub的设置自动生成的，不要修改这个文件。</p>
-</li>
-</ul>
-<h3 id="9-安装有道词典"><a href="#9-安装有道词典" class="headerlink" title="9.安装有道词典"></a>9.安装有道词典</h3><p><a href="http://cidian.youdao.com/multi.html?vendor=fanyiweb" target="_blank" rel="external">官网</a>下载相应deb包可直接安装既可。</p>
+<h3 id="8-安装有道词典"><a href="#8-安装有道词典" class="headerlink" title="8.安装有道词典"></a>8.安装有道词典</h3><p><a href="http://cidian.youdao.com/multi.html?vendor=fanyiweb" target="_blank" rel="external">官网</a>下载相应deb包可直接安装既可。</p>
 <p>注：Ubuntu 16.04因为有些依赖问题就无法安装成功，因为官方的deb包（Ubuntu版本的）依赖gstreamer0.10-plugins-ugly，但是该软件在16.04里面已经没有了。</p>
 <p><strong>解决办法</strong><br>1.下载deepin的包可以正常安装（亲测可用）。<br>2.去掉deb包里面对于该库的依赖</p>
 <ul>
@@ -213,19 +338,44 @@ sudo apt-get install classicmenu-indicator
 <li>重新打包<code>dpkg-deb -b youdao youdaobuild.deb</code></li>
 <li>安装重新打包的安装包<code>dpkg -i youdaobuild.deb</code></li>
 </ul>
-]]></content>
+<h3 id="9-安装wps"><a href="#9-安装wps" class="headerlink" title="9.安装wps"></a>9.安装wps</h3><p><a href="http://wps-community.org/" target="_blank" rel="external">官网</a>下载相应版本wps安装即可，安装方法多种可选，建议直接下载deb包，安装简单方便。</p>
+<h3 id="10-安装haroopad"><a href="#10-安装haroopad" class="headerlink" title="10.安装haroopad"></a>10.安装haroopad</h3><p><a href="http://pad.haroopress.com/" target="_blank" rel="external">官网</a>下载相应版本安装即可，安装方法多种可选，建议直接下载deb包，安装简单方便。</p>
+<p><strong>延伸阅读：</strong>Ubuntu的16.04是第一个版本，包括新更换的软件应用程序，GNOME软件，它已经有一个错误。 目前，在Ubuntu 16.04，它不可能安装使用软件应用的第三方应用程序,<br>如Ubuntu是16.04请使用dpkg命令进行安装。</p>
+<h3 id="11-解决无声音问题"><a href="#11-解决无声音问题" class="headerlink" title="11.解决无声音问题"></a>11.解决无声音问题</h3><p>1.输入下面命令安装pavucontrol：</p>
+<pre><code>sudo apt install pavucontrol   //安装
+pavucontrol        //打开
+</code></pre><p>2.打开pavucontrol的窗口，切换到Configuration选项卡，把show后面选择All Output Devices，Port后面选择Headphones(unplugged),声音OK。</p>
+<p>3.写入配置文件<br>按照上述方法设置之后解决了问题，但是需要每次开机后都要设置一次，也就是说pavucontrol并不能自动保存我们的配置，需要我们自己设置默认的选项。</p>
+<p>查询目前使用音频输出端口</p>
+<pre><code>pacmd list | grep &quot;active port&quot;
+</code></pre><p>打开配置文件</p>
+<pre><code>sudo gedit /etc/pulse/default.pa
+</code></pre><p>在末尾追加查询可用音频输出端口</p>
+<pre><code>set-sink-port 0 analog-output-headphones   //本机为例
+</code></pre><p>重启OK。</p>
+<p><strong>延伸阅读</strong></p>
+<p>如果遇到多个输出端口，按照上述方法操作会无效。</p>
+<p>判断是否多个音频输出端口</p>
+<pre><code>pacmd list | grep &quot;active port&quot;
+</code></pre><p>查看可用音频端口启动顺序</p>
+<pre><code>pacmd list &gt; a.txt  //生成配置文件
+active port: &lt;analog-output-headphones&gt;   //本机端口为例查找
+</code></pre><p>将查找到的index顺序写入配置文件</p>
+<pre><code>sudo gedit /etc/pulse/default.pa  //打开配置文件
+set-sink-port 1 analog-output-headphones  //本机index顺序为1
+</code></pre>]]></content>
     
     <summary type="html">
     
       &lt;h3 id=&quot;1-安装Vim&quot;&gt;&lt;a href=&quot;#1-安装Vim&quot; class=&quot;headerlink&quot; title=&quot;1.安装Vim&quot;&gt;&lt;/a&gt;1.安装Vim&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;sudo apt-get install vim
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 
     
     </summary>
     
       <category term="Ubuntu" scheme="http://hyblog.site/categories/Ubuntu/"/>
     
     
-      <category term="Ubuntu" scheme="http://hyblog.site/tags/Ubuntu/"/>
+      <category term="Ubuntu、web开发" scheme="http://hyblog.site/tags/Ubuntu%E3%80%81web%E5%BC%80%E5%8F%91/"/>
     
   </entry>
   
@@ -234,7 +384,7 @@ sudo apt-get install classicmenu-indicator
     <link href="http://hyblog.site/2017/01/04/JavaScriptDOM%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/"/>
     <id>http://hyblog.site/2017/01/04/JavaScriptDOM编程艺术/</id>
     <published>2017-01-04T03:01:31.000Z</published>
-    <updated>2017-01-09T09:55:20.897Z</updated>
+    <updated>2017-03-08T07:16:48.222Z</updated>
     
     <content type="html"><![CDATA[<h5 id="JavaScript-DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。"><a href="#JavaScript-DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。" class="headerlink" title="JavaScript DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。"></a>JavaScript DOM编程艺术是一本比较基础的书籍，讲解了起源、语法、DOM操作、ajax基础运用、h5等基础，读完之后get到很多基础知识，清除自己的基础漏洞。</h5><a id="more"></a>
 <h3 id="JavaScript-ECMAscript"><a href="#JavaScript-ECMAscript" class="headerlink" title="JavaScript(ECMAscript)"></a>JavaScript(ECMAscript)</h3><h6 id="1-DHTML是“Dynamic“HTML-动态HTML-的简称。DHTML并不是一项新的技术，而是描述HTML、CSS、JavaScript技术综合的术语。DHTML背后的含义是"><a href="#1-DHTML是“Dynamic“HTML-动态HTML-的简称。DHTML并不是一项新的技术，而是描述HTML、CSS、JavaScript技术综合的术语。DHTML背后的含义是" class="headerlink" title="1.DHTML是“Dynamic“HTML(动态HTML)的简称。DHTML并不是一项新的技术，而是描述HTML、CSS、JavaScript技术综合的术语。DHTML背后的含义是:"></a>1.DHTML是“Dynamic“HTML(动态HTML)的简称。DHTML并不是一项新的技术，而是描述HTML、CSS、JavaScript技术综合的术语。DHTML背后的含义是:</h6><ul>
@@ -373,7 +523,7 @@ function inserAfter (newElement,targetElement){
       <category term="javaScript" scheme="http://hyblog.site/categories/javaScript/"/>
     
     
-      <category term="javaScript" scheme="http://hyblog.site/tags/javaScript/"/>
+      <category term="javaScript、web开发" scheme="http://hyblog.site/tags/javaScript%E3%80%81web%E5%BC%80%E5%8F%91/"/>
     
   </entry>
   

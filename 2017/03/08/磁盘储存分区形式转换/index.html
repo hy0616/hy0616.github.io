@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="javaScript,select2、web开发," />
+  <meta name="keywords" content="系统安装、磁盘管理," />
 
 
 
@@ -86,19 +86,22 @@
 
 
 
-<meta name="description" content="官方文档地址链接。
-报错解决">
+<meta name="description" content="一、磁盘分区形式简介在使用新磁盘之前，你必须对其进行分区。MBR（Master Boot Record）和GPT（GUID Partition Table）是在磁盘上存储分区信息的两种不同方式。这些分区信息包含了分区从哪里开始的信息，这样操作系统才知道哪个扇区是属于哪个分区的，以及哪个分区是可以启动的。在磁盘上创建分区时，你必须在MBR和GPT之间做出选择。
+
+MBR分区表，对应的是传统模式和UE">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用select2插件遇到问题总结">
-<meta property="og:url" content="http://hyblog.site/2017/01/08/使用select2插件遇到问题总结/index.html">
+<meta property="og:title" content="磁盘分区形式转换">
+<meta property="og:url" content="http://hyblog.site/2017/03/08/磁盘储存分区形式转换/index.html">
 <meta property="og:site_name" content="每天记录一点点">
-<meta property="og:description" content="官方文档地址链接。
-报错解决">
-<meta property="og:updated_time" content="2017-03-08T07:18:07.230Z">
+<meta property="og:description" content="一、磁盘分区形式简介在使用新磁盘之前，你必须对其进行分区。MBR（Master Boot Record）和GPT（GUID Partition Table）是在磁盘上存储分区信息的两种不同方式。这些分区信息包含了分区从哪里开始的信息，这样操作系统才知道哪个扇区是属于哪个分区的，以及哪个分区是可以启动的。在磁盘上创建分区时，你必须在MBR和GPT之间做出选择。
+
+MBR分区表，对应的是传统模式和UE">
+<meta property="og:updated_time" content="2017-03-08T07:15:47.026Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用select2插件遇到问题总结">
-<meta name="twitter:description" content="官方文档地址链接。
-报错解决">
+<meta name="twitter:title" content="磁盘分区形式转换">
+<meta name="twitter:description" content="一、磁盘分区形式简介在使用新磁盘之前，你必须对其进行分区。MBR（Master Boot Record）和GPT（GUID Partition Table）是在磁盘上存储分区信息的两种不同方式。这些分区信息包含了分区从哪里开始的信息，这样操作系统才知道哪个扇区是属于哪个分区的，以及哪个分区是可以启动的。在磁盘上创建分区时，你必须在MBR和GPT之间做出选择。
+
+MBR分区表，对应的是传统模式和UE">
 
 
 
@@ -116,7 +119,7 @@
   };
 </script>
 
-  <title> 使用select2插件遇到问题总结 | 每天记录一点点 </title>
+  <title> 磁盘分区形式转换 | 每天记录一点点 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -266,7 +269,7 @@
             
             
               
-                使用select2插件遇到问题总结
+                磁盘分区形式转换
               
             
           </h1>
@@ -278,8 +281,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-08T17:51:23+08:00" content="2017-01-08">
-              2017-01-08
+            <time itemprop="dateCreated" datetime="2017-03-08T15:16:30+08:00" content="2017-03-08">
+              2017-03-08
             </time>
           </span>
 
@@ -292,8 +295,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">javaScript</span>
+                  <a href="/categories/系统安装/" itemprop="url" rel="index">
+                    <span itemprop="name">系统安装</span>
                   </a>
                 </span>
 
@@ -312,7 +315,7 @@
 
           
           
-             <span id="/2017/01/08/使用select2插件遇到问题总结/" class="leancloud_visitors" data-flag-title="使用select2插件遇到问题总结">
+             <span id="/2017/03/08/磁盘储存分区形式转换/" class="leancloud_visitors" data-flag-title="磁盘分区形式转换">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -334,12 +337,54 @@
       
 
       
-        <p><strong>官方文档地址<a href="http://select2.github.io/" target="_blank" rel="external">链接</a>。</strong></p>
-<h4 id="报错解决"><a href="#报错解决" class="headerlink" title="报错解决"></a>报错解决</h4><a id="more"></a>
-<p><strong>错误1:</strong> 当使用本地或远程数据时可能会报<code>Uncaught Error: Option &#39;ajax&#39; is not allowed for Select2 when attached to a &lt;select&gt; element</code>类似错误。</p>
-<p><strong>解决办法:</strong> 将select标签换成div标签，显示正常。</p>
-<p><strong>错误2：</strong> 如果select2插件引用时，展示框出现样式问题。</p>
-<p><strong>解决办法:</strong> 可查看li标签样式，或设置select宽度。</p>
+        <h3 id="一、磁盘分区形式简介"><a href="#一、磁盘分区形式简介" class="headerlink" title="一、磁盘分区形式简介"></a>一、磁盘分区形式简介</h3><p>在使用新磁盘之前，你必须对其进行分区。MBR（Master Boot Record）和GPT（GUID Partition Table）是在磁盘上存储分区信息的两种不同方式。这些分区信息包含了分区从哪里开始的信息，这样操作系统才知道哪个扇区是属于哪个分区的，以及哪个分区是可以启动的。在磁盘上创建分区时，你必须在MBR和GPT之间做出选择。</p>
+<ul>
+<li><p>MBR分区表，对应的是传统模式和UEFI的Legacy模式，2.1T以下的硬盘用，可以引导32bit和64bit的系统</p>
+<ul>
+<li>MBR本身不是某一个分区，而是一块硬盘分配各个分区的一种模式。也可以认为，一块MBR磁盘上的所有分区都属于MBR分区。MBR磁盘可以被大多数新的老的操作系统识别，是传统上常用的一种模式，但一块硬盘上的主分区不能超过4个，最大容量不能超过2.1TB。</li>
+</ul>
+</li>
+<li><p>GPT分区表，对应的是UEFI模式，用于2.1T及其以上的硬盘。</p>
+<ul>
+<li><p>GPT本身不是某一个分区，而是一块硬盘分配各个分区的一种模式。也可以认为，一块GPT磁盘上的所有分区都属于GPT分区。GPT磁盘存储数据更稳定，是一种先进的模式，主分区数量没有限制，容量也没有限制（最大可达18000TB）。只有在支持UEFI的BIOS的主板上，才能在GPT磁盘上安装64位操作系统。</p>
+</li>
+<li><p>任何一块GPT磁盘上都有一个MSR分区，大小随硬盘总容量而定，一般不超过128MB。这个分区不能被用户直接使用，它的用途是防止将一块GPT磁盘接到老系统（如XP）中，被当作未格式化的空硬盘而继续操作（例如重新格式化），导致数据丢失。GPT磁盘上有了这个分区，当把它接入XP等老系统中，会提示无法识别的磁盘，也无法进一步操作。</p>
+</li>
+<li><p>GPT磁盘只有做系统盘的时候才会有EFI分区，这个分区是操作系统的引导分区，与在MBR磁盘上安装生成的那个100MB隐藏分区用途相同。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="二、GPT磁盘转换MBR磁盘"><a href="#二、GPT磁盘转换MBR磁盘" class="headerlink" title="二、GPT磁盘转换MBR磁盘"></a>二、GPT磁盘转换MBR磁盘</h3><p>有时候用原版系统镜像安装windows系统时，会提示“windows无法安装到这个磁盘。选中的磁盘采用GPT分区形式”，导致安装失败。</p>
+<p><strong>操作步骤</strong></p>
+<ol>
+<li>在系统提示无法安装的那一步，按住“shift+f10”，呼出“cmd”命令符。</li>
+<li>输入：diskpart，回车，进入diskpart。</li>
+<li>输入：list disk，回车，显示磁盘信息。</li>
+<li>输入：select disk 0，回车，选择第0个磁盘（电脑的硬盘编号是从0开始的）。</li>
+<li>输入：clean，回车，删除磁盘分区&amp;格式化。</li>
+<li>输入：convert mbr，回车，将当前磁盘分区设置为Mbr形式。</li>
+<li>输入：create partition primary size = xxx，回车，创建主分区大小（MB）。</li>
+<li>输入：format fs=ntfs quick，回车，格式化磁盘为ntfs。</li>
+<li>输入：exit，回车，退出diskpart，输入：exit，回车，退出cmd。</li>
+</ol>
+<h3 id="三、MBR磁盘转换GPT磁盘"><a href="#三、MBR磁盘转换GPT磁盘" class="headerlink" title="三、MBR磁盘转换GPT磁盘"></a>三、MBR磁盘转换GPT磁盘</h3><p>有时候用原版系统镜像安装windows系统时，会提示“windows无法安装到这个磁盘。选中的磁盘采用MBR分区形式”，导致安装失败。</p>
+<p><strong>操作步骤</strong></p>
+<ol>
+<li>在系统提示无法安装的那一步，按住“shift+f10”，呼出“cmd”命令符。</li>
+<li>输入：diskpart，回车，进入diskpart。</li>
+<li>输入：list disk，回车，显示磁盘信息。</li>
+<li>输入：select disk 0，回车，选择第0个磁盘（电脑的硬盘编号是从0开始的）。</li>
+<li>输入：clean，回车，删除磁盘分区&amp;格式化。</li>
+<li>输入：convert gpt，回车，将当前磁盘分区设置为GPT形式。</li>
+<li>输入：create partition efi size=100，回车，创建EFI分区，大小为100。</li>
+<li>输入：create partition msr size=128，回车，创建MSR分区，微软默认大小是128M。</li>
+<li>输入：create partition primary size=×××，创建主分区，这里要注意数字按M计算。</li>
+<li>输入：list partition，回车，列出磁盘上的分区。</li>
+<li>输入：exit，回车，退出diskpart，输入：exit，回车，退出cmd。</li>
+</ol>
+<p>温馨提示：</p>
+<p>diskpart命令的详细内容，可以利用键入help命令查看。</p>
 
       
     </div>
@@ -377,9 +422,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/javaScript/" rel="tag">#javaScript</a>
-          
-            <a href="/tags/select2、web开发/" rel="tag">#select2、web开发</a>
+            <a href="/tags/系统安装、磁盘管理/" rel="tag">#系统安装、磁盘管理</a>
           
         </div>
       
@@ -388,17 +431,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/06/安装ubuntu后需要做的事/" rel="next" title="安装ubuntu后需要做的事">
-                <i class="fa fa-chevron-left"></i> 安装ubuntu后需要做的事
+              <a href="/2017/03/01/linux命令记录/" rel="next" title="linux命令记录">
+                <i class="fa fa-chevron-left"></i> linux命令记录
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/01/09/ubuntu搭建web开发环境/" rel="prev" title="ubuntu搭建web开发环境">
-                ubuntu搭建web开发环境 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -530,7 +569,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#报错解决"><span class="nav-number">1.</span> <span class="nav-text">报错解决</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、磁盘分区形式简介"><span class="nav-number">1.</span> <span class="nav-text">一、磁盘分区形式简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、GPT磁盘转换MBR磁盘"><span class="nav-number">2.</span> <span class="nav-text">二、GPT磁盘转换MBR磁盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、MBR磁盘转换GPT磁盘"><span class="nav-number">3.</span> <span class="nav-text">三、MBR磁盘转换GPT磁盘</span></a></li></ol></div>
             
           </div>
         </section>

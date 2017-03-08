@@ -265,6 +265,330 @@
             
               
                 
+                <a class="post-title-link" href="/2017/03/08/磁盘储存分区形式转换/" itemprop="url">
+                  磁盘分区形式转换
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-08T15:16:30+08:00" content="2017-03-08">
+              2017-03-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/系统安装/" itemprop="url" rel="index">
+                    <span itemprop="name">系统安装</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/03/08/磁盘储存分区形式转换/" class="leancloud_visitors" data-flag-title="磁盘分区形式转换">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="一、磁盘分区形式简介"><a href="#一、磁盘分区形式简介" class="headerlink" title="一、磁盘分区形式简介"></a>一、磁盘分区形式简介</h3><p>在使用新磁盘之前，你必须对其进行分区。MBR（Master Boot Record）和GPT（GUID Partition Table）是在磁盘上存储分区信息的两种不同方式。这些分区信息包含了分区从哪里开始的信息，这样操作系统才知道哪个扇区是属于哪个分区的，以及哪个分区是可以启动的。在磁盘上创建分区时，你必须在MBR和GPT之间做出选择。</p>
+<ul>
+<li><p>MBR分区表，对应的是传统模式和UEFI的Legacy模式，2.1T以下的硬盘用，可以引导32bit和64bit的系统</p>
+<ul>
+<li>MBR本身不是某一个分区，而是一块硬盘分配各个分区的一种模式。也可以认为，一块MBR磁盘上的所有分区都属于MBR分区。MBR磁盘可以被大多数新的老的操作系统识别，是传统上常用的一种模式，但一块硬盘上的主分区不能超过4个，最大容量不能超过2.1TB。</li>
+</ul>
+</li>
+<li><p>GPT分区表，对应的是UEFI模式，用于2.1T及其以上的硬盘。</p>
+<ul>
+<li><p>GPT本身不是某一个分区，而是一块硬盘分配各个分区的一种模式。也可以认为，一块GPT磁盘上的所有分区都属于GPT分区。GPT磁盘存储数据更稳定，是一种先进的模式，主分区数量没有限制，容量也没有限制（最大可达18000TB）。只有在支持UEFI的BIOS的主板上，才能在GPT磁盘上安装64位操作系统。</p>
+</li>
+<li><p>任何一块GPT磁盘上都有一个MSR分区，大小随硬盘总容量而定，一般不超过128MB。这个分区不能被用户直接使用，它的用途是防止将一块GPT磁盘接到老系统（如XP）中，被当作未格式化的空硬盘而继续操作（例如重新格式化），导致数据丢失。GPT磁盘上有了这个分区，当把它接入XP等老系统中，会提示无法识别的磁盘，也无法进一步操作。</p>
+</li>
+<li><p>GPT磁盘只有做系统盘的时候才会有EFI分区，这个分区是操作系统的引导分区，与在MBR磁盘上安装生成的那个100MB隐藏分区用途相同。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="二、GPT磁盘转换MBR磁盘"><a href="#二、GPT磁盘转换MBR磁盘" class="headerlink" title="二、GPT磁盘转换MBR磁盘"></a>二、GPT磁盘转换MBR磁盘</h3><p>有时候用原版系统镜像安装windows系统时，会提示“windows无法安装到这个磁盘。选中的磁盘采用GPT分区形式”，导致安装失败。</p>
+<p><strong>操作步骤</strong></p>
+<ol>
+<li>在系统提示无法安装的那一步，按住“shift+f10”，呼出“cmd”命令符。</li>
+<li>输入：diskpart，回车，进入diskpart。</li>
+<li>输入：list disk，回车，显示磁盘信息。</li>
+<li>输入：select disk 0，回车，选择第0个磁盘（电脑的硬盘编号是从0开始的）。</li>
+<li>输入：clean，回车，删除磁盘分区&amp;格式化。</li>
+<li>输入：convert mbr，回车，将当前磁盘分区设置为Mbr形式。</li>
+<li>输入：create partition primary size = xxx，回车，创建主分区大小（MB）。</li>
+<li>输入：format fs=ntfs quick，回车，格式化磁盘为ntfs。</li>
+<li>输入：exit，回车，退出diskpart，输入：exit，回车，退出cmd。</li>
+</ol>
+<h3 id="三、MBR磁盘转换GPT磁盘"><a href="#三、MBR磁盘转换GPT磁盘" class="headerlink" title="三、MBR磁盘转换GPT磁盘"></a>三、MBR磁盘转换GPT磁盘</h3><p>有时候用原版系统镜像安装windows系统时，会提示“windows无法安装到这个磁盘。选中的磁盘采用MBR分区形式”，导致安装失败。</p>
+<p><strong>操作步骤</strong></p>
+<ol>
+<li>在系统提示无法安装的那一步，按住“shift+f10”，呼出“cmd”命令符。</li>
+<li>输入：diskpart，回车，进入diskpart。</li>
+<li>输入：list disk，回车，显示磁盘信息。</li>
+<li>输入：select disk 0，回车，选择第0个磁盘（电脑的硬盘编号是从0开始的）。</li>
+<li>输入：clean，回车，删除磁盘分区&amp;格式化。</li>
+<li>输入：convert gpt，回车，将当前磁盘分区设置为GPT形式。</li>
+<li>输入：create partition efi size=100，回车，创建EFI分区，大小为100。</li>
+<li>输入：create partition msr size=128，回车，创建MSR分区，微软默认大小是128M。</li>
+<li>输入：create partition primary size=×××，创建主分区，这里要注意数字按M计算。</li>
+<li>输入：list partition，回车，列出磁盘上的分区。</li>
+<li>输入：exit，回车，退出diskpart，输入：exit，回车，退出cmd。</li>
+</ol>
+<p>温馨提示：</p>
+<p>diskpart命令的详细内容，可以利用键入help命令查看。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/01/linux命令记录/" itemprop="url">
+                  linux命令记录
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-01T16:40:14+08:00" content="2017-03-01">
+              2017-03-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">Ubuntu</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/03/01/linux命令记录/" class="leancloud_visitors" data-flag-title="linux命令记录">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-查看端口占用情况并杀死进程"><a href="#1-查看端口占用情况并杀死进程" class="headerlink" title="1.查看端口占用情况并杀死进程"></a>1.查看端口占用情况并杀死进程</h3><ul>
+<li><p><code>ps -ef | grep 8080</code> 查询端口占用</p>
+</li>
+<li><p><code>kill -9 端口号</code>  杀死进程</p>
+</li>
+</ul>
+<h3 id="2-通过关键字查找包含内容文件"><a href="#2-通过关键字查找包含内容文件" class="headerlink" title="2.通过关键字查找包含内容文件"></a>2.通过关键字查找包含内容文件</h3><ul>
+<li><code>find /xxx -name &quot;*&quot; | xargs grep &quot;content&quot;</code></li>
+</ul>
+<p>注： /xxx表示路径，”*”表示在含有某关键字名字下的文件中查找。</p>
+<p>例： 当前目录下搜索含有Temporary_random内容的所有文件</p>
+<p><code>find ./ -name &quot;*&quot; | xargs grep &quot;Temporary_random&quot;</code></p>
+<h3 id="3-安装deb命令"><a href="#3-安装deb命令" class="headerlink" title="3.安装deb命令"></a>3.安装deb命令</h3><blockquote>
+<p>deb是Debian Linux的安装格式，跟Red Hat的rpm非常相似，最基本的安装命令是：dpkg -i xxx.deb</p>
+<p>dpkg 是Debian Package的简写，是为Debian 专门开发的套件管理系统，方便软件的安装、更新及移除。所有源自Debian的Linux发行版都使用dpkg，例如Ubuntu、Knoppix 等。</p>
+</blockquote>
+<p>dpkg命令常用格式如下：</p>
+<ul>
+<li><p><code>sudo dpkg -I xxx.deb</code> 查看软件包的详细信息，包括软件名称、版本以及大小等（其中-I等价于–info）</p>
+</li>
+<li><p><code>sudo dpkg -c xxx.deb</code> 查看软件包中包含的文件结构（其中-c等价于–contents）</p>
+</li>
+<li><p><code>sudo dpkg -i xxx.deb</code> 安装软件包（其中-i等价于–install）</p>
+</li>
+<li><p><code>sudo dpkg -l xxx.deb</code> 查看软件包的信息（软件名称可通过dpkg -I命令查看，其中-l等价于–list）</p>
+</li>
+<li><p><code>sudo dpkg -L xxx.deb</code> 查看软件包安装的所有文件（软件名称可通过dpkg -I命令查看，其中-L等价于–listfiles）</p>
+</li>
+<li><p><code>sudo dpkg -s xxx.deb</code> 查看软件包的详细信息（软件名称可通过dpkg -I命令查看，其中-s等价于–status）</p>
+</li>
+<li><p><code>sudo dpkg -r xxx.deb</code> 卸载软件包（软件名称可通过dpkg -I命令查看，其中-r等价于–remove）</p>
+</li>
+</ul>
+<p>注： dpkg命令无法自动解决依赖关系。如果安装的deb包存在依赖包，则应避免使用此命令，或者按照依赖关系顺序安装依赖包。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/01/09/ubuntu搭建web开发环境/" itemprop="url">
                   ubuntu搭建web开发环境
                 </a>
@@ -336,13 +660,62 @@
 
       
         
-          <h3 id="一、安装nodejs"><a href="#一、安装nodejs" class="headerlink" title="一、安装nodejs"></a>一、安装nodejs</h3><p><strong>源码安装</strong></p>
-<p>1.官网下载nodejs源码，<a href="http://nodejs.org">nodejs官网</a>或者<a href="http://nodejs.cn">nodejs中文网</a>，下载相应版本。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/01/09/ubuntu搭建web开发环境/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <h3 id="一、安装nodejs"><a href="#一、安装nodejs" class="headerlink" title="一、安装nodejs"></a>一、安装nodejs</h3><p><strong>源码安装</strong></p>
+<p>1.官网下载nodejs源码，<a href="http://nodejs.org" target="_blank" rel="external">nodejs官网</a>或者<a href="http://nodejs.cn" target="_blank" rel="external">nodejs中文网</a>，下载相应版本。</p>
+<p>2.源码解压安装</p>
+<pre><code>apt-get update  //更新源，近期已更新可省略
+apt-get install python gcc make g++  //安装依赖包，已安装可省略
+sudo cp -r node-v6.9.2.tar.gz /opt/nodejs  //复制源码到安装目录
+sudo tar -zxvf node-v6.9.2.tar.gz  //解压源码
+cd node-v6.9.2  //进入源码
+sudo ./configure  //检测系统配置，生成makefile文件。
+sudo make  //源码编译
+sudo make install  //安装
+</code></pre><p>3.执行<code>node -v</code> 显示node版本号，安装成功。</p>
+<p>4.安装tj大神写的n(nde版本管理工具)<code>sudo npm install -g n</code>,此后就可用n来切换、安装node版本了。</p>
+<p><strong>延伸阅读:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">sudo n  //切换nodejs版本</div><div class="line">sudo n latest  //安装官网最新发布版本</div><div class="line">sudo n stable  //安装官网稳定版本</div><div class="line">sudo n lts  //安装官网最新正式发布LTS版本</div><div class="line">sudo n 6.9.2  //安装指定版本</div><div class="line">sudo n rm 6.9.2 或 sudo n -6.9.2   //删除指定版本nodejs</div><div class="line">sudo n ls  //查看可用node版本</div></pre></td></tr></table></figure></p>
+<h3 id="二、通过NPM安装一系列前端管理工具"><a href="#二、通过NPM安装一系列前端管理工具" class="headerlink" title="二、通过NPM安装一系列前端管理工具"></a>二、通过NPM安装一系列前端管理工具</h3><p>1.执行<code>sudo npm install -g gulp</code> 命令安装gulp(自动化构建工具)。</p>
+<p>2.执行<code>sudo npm install -g grunt-cli</code> 命令安装grunt(自动化构建工具)。</p>
+<p>3.执行<code>sudo npm install -g bower</code> 命令安装bower(前端包管理工具)。</p>
+<h3 id="三、安装Git"><a href="#三、安装Git" class="headerlink" title="三、安装Git"></a>三、安装Git</h3><p>1.执行<code>sudo apt-get install git</code>命令安装git</p>
+<p>2.测试git是否安装成功，执行<code>git --version</code>命令，输出版本号，安装成功。</p>
+<p>3.配置git</p>
+<pre><code>git config --global user.name &quot;Your Name&quot;  //指定用户名
+git config --global user.email &quot;youremail@domain.com&quot;  //指定邮箱
+git config --list  //查看配置信息
+</code></pre><p>4.创建本地repository</p>
+<pre><code>sudo git init localGit //创建名为localGit的本地仓库
+cd localGit  //进入文件夹
+touch test.md  //创建一个文件
+git add test.md  //添加至本地仓库
+git commit -m &quot;注释&quot;  //提交至本地仓库
+</code></pre><p>5.提交远程仓库</p>
+<pre><code>git remote add origin git@github.com:&lt;github用户名&gt;/&lt;仓库名称&gt;git    //本地仓库可远程仓库链接
+git push -u origin master  //提交至远程仓库，origin(仓库名)，master(指定分支)
+</code></pre><h3 id="四、安装Sublime-Text3"><a href="#四、安装Sublime-Text3" class="headerlink" title="四、安装Sublime Text3"></a>四、安装Sublime Text3</h3><p>1.首先添加sublime text 3的仓库</p>
+<pre><code>sudo add-apt-repository ppa:webupd8team/sublime-text-3
+</code></pre><p>2.更新软件库</p>
+<pre><code>sudo apt-get update
+</code></pre><p>3.安装Sublime Text 3</p>
+<pre><code>sudo apt install sublime-text-installer
+</code></pre><p>4.安装插件管理器Packeage Control</p>
+<p>执行命令<code>subl</code>打开Sublime Text 3,按快捷键<strong>ctrl + shift + p</strong> 在弹出的窗口中查找<strong>install package control</strong>命令，单击运行.</p>
+<p>5.解决中文输入法问题</p>
+<ul>
+<li>安装fcitx<code>sudo apt-get install fcitx-table-pinyin</code></li>
+<li>配置更改为fcitx，重启电脑</li>
+<li><p>打补丁，github<a href="https://github.com/lyfeyaj/sublime-text-imfix" target="_blank" rel="external">下载地址</a></p>
+<pre><code>sudo apt-get update &amp;&amp; sudo apt-get upgrade  //更新
+git clone https://github.com/lyfeyaj/sublime-text-imfix.git  //下载
+cd sublime-text-imfix  //进入
+./sublime-imfix  //执行脚本
+</code></pre></li>
+<li>重启Sublime生效。</li>
+</ul>
+<h3 id="五、安装chrome"><a href="#五、安装chrome" class="headerlink" title="五、安装chrome"></a>五、安装chrome</h3><p><a href="http://www.google.cn/chrome/browser/desktop/index.html" target="_blank" rel="external">官网</a>下载deb包直接安装。</p>
+
+          
         
       
     </div>
@@ -586,13 +959,114 @@
 
       
         
-          <h3 id="1-安装Vim"><a href="#1-安装Vim" class="headerlink" title="1.安装Vim"></a>1.安装Vim</h3><pre><code>sudo apt-get install vim
+          
+            <h3 id="1-安装Vim"><a href="#1-安装Vim" class="headerlink" title="1.安装Vim"></a>1.安装Vim</h3><pre><code>sudo apt-get install vim
+</code></pre><h3 id="2-更新源"><a href="#2-更新源" class="headerlink" title="2.更新源"></a>2.更新源</h3><blockquote>
+<p>系统自带的有些源在国内访问不了，能访问的速度也很慢，所以我们跟换为国内源，国内有很多不错的源，比如阿里源、163源、北京交大、上海交通、清华大学等。</p>
+</blockquote>
+<ul>
+<li><p>首先备份一下系统自带源，以备以后用到</p>
+<pre><code>sudo cp /etc/apt/sources.list  /etc/apt/sources.list.backup
+</code></pre></li>
+<li><p>打开并删除源设置文件内容</p>
+<pre><code>sudo gedit /etc/apt/sources.list
+</code></pre></li>
+<li><p>将国内源添加到配置文件，同步更新资源包</p>
+<pre><code>apt-get update                   //更新软件源
+apt-get upgrade                 //升级已安装的所有软件包
+</code></pre></li>
+</ul>
+<p><strong>阿里源：</strong></p>
+<blockquote>
+<p>deb-src <a href="http://archive.ubuntu.com/ubuntu" target="_blank" rel="external">http://archive.ubuntu.com/ubuntu</a> xenial main restricted #Added by software-properties<br>deb <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial main restricted<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial main restricted multiverse universe #Added by software-properties<br>deb <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial-updates main restricted<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial-updates main restricted multiverse universe #Added by software-properties<br>deb <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial universe<br>deb <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial-updates universe<br>deb <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial multiverse<br>deb <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial-updates multiverse<br>deb <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial-backports main restricted universe multiverse<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial-backports main restricted universe multiverse #Added by software-properties<br>deb <a href="http://archive.canonical.com/ubuntu" target="_blank" rel="external">http://archive.canonical.com/ubuntu</a> xenial partner<br>deb-src <a href="http://archive.canonical.com/ubuntu" target="_blank" rel="external">http://archive.canonical.com/ubuntu</a> xenial partner<br>deb <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial-security main restricted<br>deb-src <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial-security main restricted multiverse universe #Added by software-properties<br>deb <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial-security universe<br>deb <a href="http://mirrors.aliyun.com/ubuntu/" target="_blank" rel="external">http://mirrors.aliyun.com/ubuntu/</a> xenial-security multiverse</p>
+</blockquote>
+<h3 id="3-双系统时间修正"><a href="#3-双系统时间修正" class="headerlink" title="3.双系统时间修正"></a>3.双系统时间修正</h3><blockquote>
+<p>Ubuntu和Windows默认的时间管理方式不同，所以双系统发生时间错乱是正常的。Ubuntu默认时间是把BIOS时间当成GMT+0时间，也就是世界标准时，而我国在东八区(GMT+8)，所以如果你的Ubuntu位置是中国的话你系统显示的时间就是BIOS时间+8小时。假如现在是早上8点，那么你Ubuntu会显示8点，这时BIOS中的时间是0点。</p>
+</blockquote>
+<ul>
+<li><p>ubuntu16.04以上版本</p>
+<pre><code>sudo vim /etc/default/rcS   //将UTC=yes设为UTC=no。
+</code></pre></li>
+<li><p>ubuntu16.4版本</p>
+<pre><code>timedatectl set-local-rtc 1 --adjust-system-clock  //关闭UTC并重启
+timedatectl set-ntp 0
+</code></pre></li>
+</ul>
+<p><strong>延伸阅读：</strong>开启win time服务<br>同时按下“win键”+“x”组合键，输入“services.msc”,进入“服务项”列表，找到“Windows time ”服务，双击打开,进入服务项属性对话框，点击下方“启动”选项，然后将其启动类型更改为“自动”点击确定,重启生效。</p>
+<h3 id="4-win-ubuntu-双系统修改启动顺序"><a href="#4-win-ubuntu-双系统修改启动顺序" class="headerlink" title="4.win+ubuntu 双系统修改启动顺序"></a>4.win+ubuntu 双系统修改启动顺序</h3><ul>
+<li><p>执行<code>sudo gedit /etc/defaule/grub</code>编辑grub配置文件，修改GRUB_DEFAULT项,GRUB_DEFAULT代表的就是启动项的顺序，从数字0开始，依次代表如下启动项，（我的电脑为win启动项为2，所以改成 GRUB_DEFAULT=2）。</p>
+</li>
+<li><p>执行<code>sudo update-grub</code>，更新grub，重启电脑生效。</p>
+</li>
+</ul>
+<p><strong>延伸阅读</strong></p>
+<ul>
+<li><p>在win系统下安装ubuntu系统后默认启动的是ubuntu系统，说到启动就不得不说GRUB，Linux下大名鼎鼎的启动管理工具，当然现在已经是GRUB2了，GRUB2和GRUB最重要的区别就是，GRUB存放系统启动信息的文为/boot/grub/menu.lst，而GRUB2则为/boot/grub /grub.cfg。</p>
+</li>
+<li><p><del>/boot/grub/grub.cfg</del> 这个文件是根据/etc/grub.d的模板和/etc/default/grub的设置自动生成的，不要修改这个文件。</p>
+</li>
+</ul>
+<h3 id="5-安装经典菜单指示器"><a href="#5-安装经典菜单指示器" class="headerlink" title="5.安装经典菜单指示器"></a>5.安装经典菜单指示器</h3><pre><code>sudo apt-get update
+sudo apt-get install classicmenu-indicator
+</code></pre><p><strong>延伸阅读</strong><br>通过<code>sudo add-apt-repository ppa: xxx/ppa</code>命令在source.list里添加 ppa 源了（同时完成导入key），++add-apt-repository++是由 <strong>Python-software-properties</strong>这个工具包提供的,所以要先安装python-software-properties 才能使用 add-apt-repository,<br>安装命令：<code>apt-get install python-software-properties</code>。</p>
+<h3 id="6-Firefox浏览器设置中文"><a href="#6-Firefox浏览器设置中文" class="headerlink" title="6.Firefox浏览器设置中文"></a>6.Firefox浏览器设置中文</h3><p><strong>检查修改方法分以下几种</strong></p>
+<p>1.打开浏览器输入<strong>about:config</strong>将<strong>general.useragent.locale</strong>改为”zh-CN”，重启浏览器生效。</p>
+<p>2.执行<code>sudo apt-get install firefox-locale-zh-hans</code>命令安装火狐中文包，重启生效。</p>
+<p>3.查看是否安装ubuntu中文语言包，选择System-&gt;Administration-&gt;Language Support(系统设置&gt;全部设置&gt;语言支持)，系统会自动加载所需语言文件，选择安装Chinese(Simplified)，安装升级完成后将汉语(中国)移至最上边，点击应用到整个系统，重启生效。</p>
+<p><strong>延伸阅读：安装Adobe Flash player插件</strong></p>
+<ul>
+<li><a href="https://get.adobe.com/flashplayer" target="_blank" rel="external">官网</a>下载，这里选择tar.gz for liunx版本下载。</li>
+<li>执行<code>sudo tar -zxvf flash_player_npapi_linux.x86_64.tar.gz</code>进行解压。</li>
+<li>执行<code>cd flash_player_npapi_linux.x86_64</code>命令进入解压后文件夹。</li>
+<li>执行<code>sudo cp libflashplayer.so /usr/lib/firefox/browser/plugins</code>,拷贝到firefox插件目录下。</li>
+</ul>
+<h3 id="7-安装Terminator"><a href="#7-安装Terminator" class="headerlink" title="7.安装Terminator"></a>7.安装Terminator</h3><blockquote>
+<p>Ubuntu 中默认使用的 shell 终端工具是 gnome-terminal，虽然它已经很好用了，但有时还是无法满足我们程序员各种各样的需求，Terminator可以完美地实现了在 Ubuntu在同一窗口中启动多个终端，并且可以自由的在一个窗口中分割区域建立新终端，还可以通过鼠标拉伸调整每个终端的大小。</p>
+</blockquote>
+<pre><code>sudo apt-get install terminator
+</code></pre><p><strong>延伸阅读：设置键盘快捷键</strong></p>
+<ul>
+<li>系统设置–文本输入–键盘设置–自定义快捷键–点击+号增加自定义快捷键。</li>
+<li>填写名称和命令(名称随便填写，命令填写terminator)。</li>
+</ul>
+<h3 id="8-安装有道词典"><a href="#8-安装有道词典" class="headerlink" title="8.安装有道词典"></a>8.安装有道词典</h3><p><a href="http://cidian.youdao.com/multi.html?vendor=fanyiweb" target="_blank" rel="external">官网</a>下载相应deb包可直接安装既可。</p>
+<p>注：Ubuntu 16.04因为有些依赖问题就无法安装成功，因为官方的deb包（Ubuntu版本的）依赖gstreamer0.10-plugins-ugly，但是该软件在16.04里面已经没有了。</p>
+<p><strong>解决办法</strong><br>1.下载deepin的包可以正常安装（亲测可用）。<br>2.去掉deb包里面对于该库的依赖</p>
+<ul>
+<li>从官网下载Ubuntu版本的deb包。</li>
+<li>创建youdao-dict目录，把该deb包解压到youdao-dict目录。<code>dpkg -X ./youdao-dict_1.1.0-0-ubuntu_amd64.deb  youdao-dict</code></li>
+<li>解压deb包中的control信息（包的依赖就写在这个文件里面）<code>dpkg -e ./youdao-dict_1.1.0-0-ubuntu_amd64.deb youdao/DEBIAN</code></li>
+<li>编辑control文件，删除Depends里面的gstreamer0.10-plugins-ugly。</li>
+<li>重新打包<code>dpkg-deb -b youdao youdaobuild.deb</code></li>
+<li>安装重新打包的安装包<code>dpkg -i youdaobuild.deb</code></li>
+</ul>
+<h3 id="9-安装wps"><a href="#9-安装wps" class="headerlink" title="9.安装wps"></a>9.安装wps</h3><p><a href="http://wps-community.org/" target="_blank" rel="external">官网</a>下载相应版本wps安装即可，安装方法多种可选，建议直接下载deb包，安装简单方便。</p>
+<h3 id="10-安装haroopad"><a href="#10-安装haroopad" class="headerlink" title="10.安装haroopad"></a>10.安装haroopad</h3><p><a href="http://pad.haroopress.com/" target="_blank" rel="external">官网</a>下载相应版本安装即可，安装方法多种可选，建议直接下载deb包，安装简单方便。</p>
+<p><strong>延伸阅读：</strong>Ubuntu的16.04是第一个版本，包括新更换的软件应用程序，GNOME软件，它已经有一个错误。 目前，在Ubuntu 16.04，它不可能安装使用软件应用的第三方应用程序,<br>如Ubuntu是16.04请使用dpkg命令进行安装。</p>
+<h3 id="11-解决无声音问题"><a href="#11-解决无声音问题" class="headerlink" title="11.解决无声音问题"></a>11.解决无声音问题</h3><p>1.输入下面命令安装pavucontrol：</p>
+<pre><code>sudo apt install pavucontrol   //安装
+pavucontrol        //打开
+</code></pre><p>2.打开pavucontrol的窗口，切换到Configuration选项卡，把show后面选择All Output Devices，Port后面选择Headphones(unplugged),声音OK。</p>
+<p>3.写入配置文件<br>按照上述方法设置之后解决了问题，但是需要每次开机后都要设置一次，也就是说pavucontrol并不能自动保存我们的配置，需要我们自己设置默认的选项。</p>
+<p>查询目前使用音频输出端口</p>
+<pre><code>pacmd list | grep &quot;active port&quot;
+</code></pre><p>打开配置文件</p>
+<pre><code>sudo gedit /etc/pulse/default.pa
+</code></pre><p>在末尾追加查询可用音频输出端口</p>
+<pre><code>set-sink-port 0 analog-output-headphones   //本机为例
+</code></pre><p>重启OK。</p>
+<p><strong>延伸阅读</strong></p>
+<p>如果遇到多个输出端口，按照上述方法操作会无效。</p>
+<p>判断是否多个音频输出端口</p>
+<pre><code>pacmd list | grep &quot;active port&quot;
+</code></pre><p>查看可用音频端口启动顺序</p>
+<pre><code>pacmd list &gt; a.txt  //生成配置文件
+active port: &lt;analog-output-headphones&gt;   //本机端口为例查找
+</code></pre><p>将查找到的index顺序写入配置文件</p>
+<pre><code>sudo gedit /etc/pulse/default.pa  //打开配置文件
+set-sink-port 1 analog-output-headphones  //本机index顺序为1
 </code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/01/06/安装ubuntu后需要做的事/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
         
       
     </div>
@@ -743,134 +1217,13 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/03/github-Hexo搭建博客平台-简记录/" itemprop="url">
-                  github+Hexo搭建博客平台-简记录
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-03T16:02:10+08:00" content="2017-01-03">
-              2017-01-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/github/" itemprop="url" rel="index">
-                    <span itemprop="name">github</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-             <span id="/2017/01/03/github-Hexo搭建博客平台-简记录/" class="leancloud_visitors" data-flag-title="github+Hexo搭建博客平台-简记录">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>1.创建github帐号，邮箱进行认证。</p>
-<p>2.创建username.github.io仓库，仓库名称是github特定名称。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/01/03/github-Hexo搭建博客平台-简记录/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -909,7 +1262,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -917,7 +1270,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -926,7 +1279,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
