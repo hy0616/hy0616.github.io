@@ -1,7 +1,7 @@
 ---
 title: JavaScriptDOM编程艺术
 date: 2017-01-04 11:01:31
-tags: javaScript
+tags: [javaScript、web开发]
 categories: javaScript
 ---
 

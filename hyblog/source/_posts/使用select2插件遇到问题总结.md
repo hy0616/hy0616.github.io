@@ -1,7 +1,7 @@
 ---
 title: 使用select2插件遇到问题总结
 date: 2017-01-08 17:51:23
-tags: [javaScript,select2]
+tags: [javaScript,select2、web开发]
 categories: javaScript
 ---
 

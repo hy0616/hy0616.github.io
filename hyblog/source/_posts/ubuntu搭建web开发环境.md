@@ -1,7 +1,7 @@
 ---
 title: ubuntu搭建web开发环境
 date: 2017-01-09 16:40:14
-tags: [Ubuntu, web开发环境]
+tags: [Ubuntu, web开发]
 categories: web开发
 ---
 
@@ -10,8 +10,6 @@ categories: web开发
 **源码安装**
 
 1.官网下载nodejs源码，[nodejs官网](http://nodejs.org)或者[nodejs中文网](http://nodejs.cn)，下载相应版本。
-
-<!--more-->
 
 2.源码解压安装
 
@@ -104,3 +102,4 @@ sudo n ls  //查看可用node版本
 
 ### 五、安装chrome
 [官网](http://www.google.cn/chrome/browser/desktop/index.html)下载deb包直接安装。
+
