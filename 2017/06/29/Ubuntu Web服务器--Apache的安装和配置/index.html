@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="web开发," />
 
 
 
@@ -86,15 +86,16 @@
 
 
 
-<meta name="description" content="生命不止，奋斗不息">
-<meta property="og:type" content="website">
-<meta property="og:title" content="每天记录一点点">
-<meta property="og:url" content="http://hyblog.site/archives/2017/index.html">
+<meta name="description" content="1.命令行安装Apache打开”终端窗口”，输入”sudo apt-get install apache2”–&amp;gt;回车–&amp;gt;输入”root用户的密码”–&amp;gt;回车–&amp;gt;输入”y”–&amp;gt;回车,安装完成">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu Web服务器--Apache的安装和配置">
+<meta property="og:url" content="http://hyblog.site/2017/06/29/Ubuntu Web服务器--Apache的安装和配置/index.html">
 <meta property="og:site_name" content="每天记录一点点">
-<meta property="og:description" content="生命不止，奋斗不息">
+<meta property="og:description" content="1.命令行安装Apache打开”终端窗口”，输入”sudo apt-get install apache2”–&amp;gt;回车–&amp;gt;输入”root用户的密码”–&amp;gt;回车–&amp;gt;输入”y”–&amp;gt;回车,安装完成">
+<meta property="og:updated_time" content="2017-06-29T08:06:43.933Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每天记录一点点">
-<meta name="twitter:description" content="生命不止，奋斗不息">
+<meta name="twitter:title" content="Ubuntu Web服务器--Apache的安装和配置">
+<meta name="twitter:description" content="1.命令行安装Apache打开”终端窗口”，输入”sudo apt-get install apache2”–&amp;gt;回车–&amp;gt;输入”root用户的密码”–&amp;gt;回车–&amp;gt;输入”y”–&amp;gt;回车,安装完成">
 
 
 
@@ -112,7 +113,7 @@
   };
 </script>
 
-  <title> 归档 | 每天记录一点点 </title>
+  <title> Ubuntu Web服务器--Apache的安装和配置 | 每天记录一点点 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -133,7 +134,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -241,255 +242,172 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 8 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
 
-      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Ubuntu Web服务器--Apache的安装和配置
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-29T20:30:16+08:00" content="2017-06-29">
+              2017-06-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">Ubuntu</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/06/29/Ubuntu Web服务器--Apache的安装和配置/" class="leancloud_visitors" data-flag-title="Ubuntu Web服务器--Apache的安装和配置">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
+        <h3 id="1-命令行安装Apache"><a href="#1-命令行安装Apache" class="headerlink" title="1.命令行安装Apache"></a>1.命令行安装Apache</h3><p>打开”终端窗口”，输入”sudo apt-get install apache2”–&gt;回车–&gt;输入”root用户的密码”–&gt;回车–&gt;输入”y”–&gt;回车,安装完成</p>
+<a id="more"></a>
+<h3 id="2-默认的网站根目录的路径"><a href="#2-默认的网站根目录的路径" class="headerlink" title="2.默认的网站根目录的路径"></a>2.默认的网站根目录的路径</h3><p>Apache安装完成后，默认的网站根目录是”/var/www/html”，在终端窗口中输入”ls /var/www/html”–&gt;回车–&gt;在网站根目录下有一个”index.html”文件,在ie浏览器中输入”127.0.0.1”–&gt;回车,就可以打开该页面。</p>
+<h3 id="3-Apache的第一个配置文件apache2-conf的路径"><a href="#3-Apache的第一个配置文件apache2-conf的路径" class="headerlink" title="3.Apache的第一个配置文件apache2.conf的路径"></a>3.Apache的第一个配置文件apache2.conf的路径</h3><p>在终端窗口中输入”ls /etc/apache2”–&gt;回车–&gt;有一个”apache2.conf”的配置文件。</p>
+<h3 id="4-Apache的第二个配置文件000-default-conf的路径"><a href="#4-Apache的第二个配置文件000-default-conf的路径" class="headerlink" title="4.Apache的第二个配置文件000-default.conf的路径"></a>4.Apache的第二个配置文件000-default.conf的路径</h3><p>在终端窗口中输入”ls /etc/apache2/sites-available”–&gt;回车–&gt;有一个”000-default.conf”的配置文件。</p>
+<h3 id="5-修改网站的根目录"><a href="#5-修改网站的根目录" class="headerlink" title="5.修改网站的根目录"></a>5.修改网站的根目录</h3><p>1、在终端窗口中输入”sudo vi /etc/apache2/apache2.conf”–&gt;回车–&gt;找到”<directory var="" www="">“的位置–&gt;更改”/var/www/“为新的根目录就可以了。</directory></p>
+<p>2、在终端窗口中输入”sudo vi /etc/apache2/sites-available/000-default.conf”–&gt;回车–&gt;找到”DocumentRoot /var/www/html”的位置–&gt;更改”/var/www/html”为新的根目录就可以了，这里我把它更改为”/var/www/“。</p>
+<h3 id="6-重启Apache"><a href="#6-重启Apache" class="headerlink" title="6.重启Apache"></a>6.重启Apache</h3><p>在终端窗口中输入”sudo /etc/init.d/apache2 restart”–&gt;回车–&gt;”输入root用户密码”–&gt;回车–&gt;重启成功。</p>
+
+      
+    </div>
+
+    <div>
+      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/weixin.png" alt="HY WeChat Pay"/>
+          <p>微信打赏</p>
         </div>
       
       
+    </div>
+  </div>
+
 
       
+    </div>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/web开发/" rel="tag">#web开发</a>
+          
+        </div>
+      
 
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/06/29/Ubuntu Web服务器--Apache的安装和配置/" itemprop="url">
-              
-                <span itemprop="name">Ubuntu Web服务器--Apache的安装和配置</span>
-              
-            </a>
-        
-      </h1>
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/08/磁盘储存分区形式转换/" rel="next" title="磁盘分区形式转换">
+                <i class="fa fa-chevron-left"></i> 磁盘分区形式转换
+              </a>
+            
+          </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-06-29T20:30:16+08:00"
-              content="2017-06-29" >
-          06-29
-        </time>
-      </div>
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
 
-    </header>
+      
+      
+    </footer>
   </article>
 
 
 
-    
-
+    <div class="post-spread">
       
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/08/磁盘储存分区形式转换/" itemprop="url">
-              
-                <span itemprop="name">磁盘分区形式转换</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-08T15:16:30+08:00"
-              content="2017-03-08" >
-          03-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/01/linux命令记录/" itemprop="url">
-              
-                <span itemprop="name">linux命令记录</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-01T16:40:14+08:00"
-              content="2017-03-01" >
-          03-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/01/09/ubuntu搭建web开发环境/" itemprop="url">
-              
-                <span itemprop="name">ubuntu搭建web开发环境</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-01-09T16:40:14+08:00"
-              content="2017-01-09" >
-          01-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/01/08/使用select2插件遇到问题总结/" itemprop="url">
-              
-                <span itemprop="name">使用select2插件遇到问题总结</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-01-08T17:51:23+08:00"
-              content="2017-01-08" >
-          01-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/01/06/安装ubuntu后需要做的事/" itemprop="url">
-              
-                <span itemprop="name">安装ubuntu后需要做的事</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-01-06T16:40:27+08:00"
-              content="2017-01-06" >
-          01-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2017/page/2/">2</a><a class="extend next" rel="next" href="/archives/2017/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-
+    </div>
+  </div>
 
 
           </div>
@@ -497,6 +415,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -516,8 +438,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/heard.jpg"
@@ -585,6 +516,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-命令行安装Apache"><span class="nav-number">1.</span> <span class="nav-text">1.命令行安装Apache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-默认的网站根目录的路径"><span class="nav-number">2.</span> <span class="nav-text">2.默认的网站根目录的路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Apache的第一个配置文件apache2-conf的路径"><span class="nav-number">3.</span> <span class="nav-text">3.Apache的第一个配置文件apache2.conf的路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Apache的第二个配置文件000-default-conf的路径"><span class="nav-number">4.</span> <span class="nav-text">4.Apache的第二个配置文件000-default.conf的路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-修改网站的根目录"><span class="nav-number">5.</span> <span class="nav-text">5.修改网站的根目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-重启Apache"><span class="nav-number">6.</span> <span class="nav-text">6.重启Apache</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -677,11 +619,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
 
 
   
